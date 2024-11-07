@@ -1,3 +1,5 @@
+const token = require('./spotifyAccessToken')
+const authtoken = token.getToken()
 @component
 export class NewScript extends BaseScriptComponent {
   @input
@@ -10,7 +12,7 @@ export class NewScript extends BaseScriptComponent {
   private pollingInterval: number = 1.0; // Polling interval in seconds
   private tolerance: number = 1000; // Tolerance in milliseconds (0.5 seconds)
   private targetMap: Map<string, string> = new Map(); // Stores timestamps and image links
-
+  
   onAwake() {
     // Start polling playback state once map is loaded
     this.getMap().then((map) => {
@@ -21,8 +23,7 @@ export class NewScript extends BaseScriptComponent {
   
   // Function to get playback state
   getPlaybackState() {
-    const accessToken = 'BQBIldzJ87dlLpavbIDV-ZwINWOxH9OEyte1aMAQej8XUPJuRMDu4DLtY4BbUxO1zG6tQlGdbIiFtopupoAIbu1mt8-IZKA2G6zluCN2JNNb7Vsq1Z8AfJaXKsaO4HYk7-r8zqTLz5nqGUuyucTL3XrnUXDco87egwZlWVEvfrLlaeGzhJ6rhMRlH8rmA914t_kjf_1NQkyzzg'; // Replace with your Spotify access token
-
+    const accessToken = authtoken
     let httpRequest = RemoteServiceHttpRequest.create();
     httpRequest.url = 'https://api.spotify.com/v1/me/player';
     httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Get;
@@ -93,13 +94,13 @@ export class NewScript extends BaseScriptComponent {
   }
  // Function to start/resume playback
   startPlayback() {
-    const accessToken = 'BQC6h4vLNlodbo-hNYB2NAtwFEDjD39NTYYwDfugsLEflhV_j3D6fXYSiQ6o9HO3x34CGhURE0TDIFJ26mrVQe5iEVWfyQq23b2zgsYiQqJaKrYIwkb7hx0CoiyGtMHnj9RbTPKK1A-3gj858xGGRnSacSHn_clnnOI6JynU5muYo9ziOk5IbKZLkrB9StyWVHmJftetrvsRaQ';
-
+    const accessToken = authtoken
     let httpRequest = RemoteServiceHttpRequest.create();
     httpRequest.url = 'https://api.spotify.com/v1/me/player/play';
     httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
     httpRequest.setHeader('Authorization', `Bearer ${accessToken}`);
     httpRequest.setHeader('Content-Type', 'application/json');
+    httpRequest.setHeader('Content-Length','0')
 
     this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
       if (response.statusCode === 200) {
@@ -113,13 +114,13 @@ export class NewScript extends BaseScriptComponent {
 
   // Function to pause playback
   pausePlayback() {
-    const accessToken = 'BQC6h4vLNlodbo-hNYB2NAtwFEDjD39NTYYwDfugsLEflhV_j3D6fXYSiQ6o9HO3x34CGhURE0TDIFJ26mrVQe5iEVWfyQq23b2zgsYiQqJaKrYIwkb7hx0CoiyGtMHnj9RbTPKK1A-3gj858xGGRnSacSHn_clnnOI6JynU5muYo9ziOk5IbKZLkrB9StyWVHmJftetrvsRaQ';
-
+    const accessToken = authtoken
     let httpRequest = RemoteServiceHttpRequest.create();
     httpRequest.url = 'https://api.spotify.com/v1/me/player/pause';
     httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
     httpRequest.setHeader('Authorization', `Bearer ${accessToken}`);
     httpRequest.setHeader('Content-Type', 'application/json');
+    httpRequest.setHeader('Content-Length','0')
 
     this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
       if (response.statusCode === 200) {
