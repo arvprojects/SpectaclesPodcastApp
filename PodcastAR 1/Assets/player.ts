@@ -1,3 +1,5 @@
+const token = require('./spotifyAccessToken')
+const authtoken = token.getToken()
 @component
 export class NewScript extends BaseScriptComponent {
   @input
@@ -9,14 +11,14 @@ export class NewScript extends BaseScriptComponent {
 
   
   
-
+    
    // Target timestamps in milliseconds
   private pollingInterval: number = 1000.0; // Polling interval in seconds
   private tolerance: number = 1000; // Tolerance in milliseconds (0.5 seconds)
   private targetMap: Map<string, string> = new Map(); // Stores timestamps and image links
-  accessToken = 'BQB7zdw7t7-6myEQdNhJ1oR4ixHvCbnQKPNeJDSIzTKtEUw0CTQqYFfHQPjIRYf6w30isW3hykcoVvmTFfRbjkRuhcgIImABzIPoSuBG8Ar-F_mDFmHSoupqlqzJS9Yg94CEodsC6l7QydwbfE0ugRdLuA3Szrp-jRs7gb4jNHFUgS893JgNMz7cbV4fPNw_eh9HKh85TqJ1Ygj1jsc'; // Replace with your Spotify access token
-  isPause =false  
-    onAwake() {
+  isPause=false
+  
+  onAwake() {
     // Start polling playback state once map is loaded
     this.getMap().then((map) => {
       this.targetMap = map;
@@ -26,11 +28,11 @@ export class NewScript extends BaseScriptComponent {
   
   // Function to get playback state
   getPlaybackState() {
-    
+    const accessToken = authtoken
     let httpRequest = RemoteServiceHttpRequest.create();
     httpRequest.url = 'https://api.spotify.com/v1/me/player';
     httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Get;
-    httpRequest.setHeader('Authorization', `Bearer ${this.accessToken}`);
+    httpRequest.setHeader('Authorization', `Bearer ${accessToken}`);
     httpRequest.setHeader('Content-Type', 'application/json');
 
     this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
@@ -114,12 +116,13 @@ export class NewScript extends BaseScriptComponent {
     }
  // Function to start/resume playback
   startPlayback() {
-
+    const accessToken = authtoken
     let httpRequest = RemoteServiceHttpRequest.create();
     httpRequest.url = 'https://api.spotify.com/v1/me/player/play';
     httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
-    httpRequest.setHeader('Authorization', `Bearer ${this.accessToken}`);
+    httpRequest.setHeader('Authorization', `Bearer ${accessToken}`);
     httpRequest.setHeader('Content-Type', 'application/json');
+    httpRequest.setHeader('Content-Length','0')
 
     this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
       if (response.statusCode === 200) {
@@ -133,12 +136,13 @@ export class NewScript extends BaseScriptComponent {
 
   // Function to pause playback
   pausePlayback() {
-
+    const accessToken = authtoken
     let httpRequest = RemoteServiceHttpRequest.create();
     httpRequest.url = 'https://api.spotify.com/v1/me/player/pause';
     httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
-    httpRequest.setHeader('Authorization', `Bearer ${this.accessToken}`);
+    httpRequest.setHeader('Authorization', `Bearer ${accessToken}`);
     httpRequest.setHeader('Content-Type', 'application/json');
+    httpRequest.setHeader('Content-Length','0')
 
     this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
       if (response.statusCode === 200) {
@@ -179,9 +183,10 @@ export class NewScript extends BaseScriptComponent {
         print(current)
         
    let httpRequest = RemoteServiceHttpRequest.create();
+   const accessToken = authtoken
 //    httpRequest.url = 'https://api.spotify.com/v1/me/player/seek?position_ms={'+NewPosition+'}';
 //    httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
-    httpRequest.setHeader('Authorization', `Bearer ${this.accessToken}`);
+    httpRequest.setHeader('Authorization', `Bearer ${accessToken}`);
     httpRequest.setHeader('Content-Type', 'application/json');
     
 
@@ -196,7 +201,7 @@ export class NewScript extends BaseScriptComponent {
         
   }
     async skipBack(){
-
+      const accessToken = authtoken
         
     let current = await this.getPlaybackState()
 //     let NewPosition = current+(-10*1000)
@@ -204,7 +209,7 @@ export class NewScript extends BaseScriptComponent {
    let httpRequest = RemoteServiceHttpRequest.create();
 //    httpRequest.url = 'https://api.spotify.com/v1/me/player/seek?position_ms=${newPosition}';
 //    httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
-    httpRequest.setHeader('Authorization', `Bearer ${this.accessToken}`);
+    httpRequest.setHeader('Authorization', `Bearer ${accessToken}`);
     httpRequest.setHeader('Content-Type', 'application/json');
     
 
