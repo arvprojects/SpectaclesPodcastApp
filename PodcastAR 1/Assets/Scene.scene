@@ -1154,12 +1154,11 @@
     - !<own> 6b8d51ae-c71a-4926-86c8-93a66f28cf08
     - !<own> 13ddb3cb-9cf6-46c8-bf62-60914ae1ef09
     - !<own> f2ae1fd9-e6eb-46e1-bc93-91faf1ead17c
-    - !<own> 2afe823c-1917-445d-9c21-c0398ebed6fd
-    - !<own> d09eccc9-71f0-4e7f-b52b-cb68fef82de0
     - !<own> fc8c9956-3fa8-49b4-9047-e60197eb501a
     - !<own> 0173b68f-120f-4197-befc-d536093a27dc
     - !<own> 433c00af-362e-43ab-8d19-7121fe75359a
     - !<own> f5f7dff5-e3da-40c5-a271-ac0bcecc69e3
+    - !<own> 5799f9fb-c270-480b-a4cb-2b4592658f39
 - !<ScriptComponent/11e595bb-7f1c-4c88-8a83-08c31cf823c9>
   PrefabRemaps:
     []
@@ -2755,31 +2754,6 @@
   BlendNormals: false
   BlendShapes:
     {}
-- !<ScriptComponent/2afe823c-1917-445d-9c21-c0398ebed6fd>
-  PrefabRemaps:
-    []
-  Name: ToggleButton
-  Enabled: true
-  ScriptAsset: !<reference> 43a76931-9bde-4e06-95b3-e9128537f344
-  ScriptInputsDefault:
-    _isToggledOn: true
-    editEventCallbacks: true
-    customFunctionForOnStateChanged: true
-    onStateChangedFunctionNames: true
-  ScriptTypesDefault:
-    {}
-  ScriptInputs:
-    "":
-      _onIcon: !<reference.SceneObject> 14dd997e-015d-4eff-bb7b-ea1cd51397fe
-      _offIcon: !<reference.SceneObject> aec4e379-3483-4c71-bd1d-a4e566285889
-      _isToggledOn: false
-      editEventCallbacks: false
-      customFunctionForOnStateChanged: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
-      onStateChangedFunctionNames: !<string[]>
-        []
-  ScriptTypes:
-    "":
-      {}
 - !<SceneObject/2b0cbf61-8c95-4d8d-832b-00eb2fa10ef3>
   PrefabRemaps:
     []
@@ -5214,6 +5188,25 @@
     - !<own> 84e5053a-1d61-4d37-887f-e4d7a10b17e9
     - !<own> 415e29e7-3562-4740-a616-f8adae95d2f3
     - !<own> 722d84a6-169a-4b3d-a104-fb2b2ce2388d
+- !<ScriptComponent/5799f9fb-c270-480b-a4cb-2b4592658f39>
+  PrefabRemaps:
+    []
+  Name: PinchButton
+  Enabled: true
+  ScriptAsset: !<reference> a54c5722-d3fb-4aa5-97ff-f7425978bc59
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      editEventCallbacks: true
+      customFunctionForOnButtonPinched: !<reference.ScriptComponent> ad0ace15-7d7a-4a35-bc95-466f1a1134f7
+      onButtonPinchedFunctionNames: !<string[]>
+        - skipAhead
+  ScriptTypes:
+    "":
+      {}
 - !<ScreenTransform/58277157-cd72-4e56-9421-d503385b0a1d>
   PrefabRemaps:
     []
@@ -11177,32 +11170,6 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
-- !<ScriptComponent/d09eccc9-71f0-4e7f-b52b-cb68fef82de0>
-  PrefabRemaps:
-    []
-  Name: ToggleFeedback
-  Enabled: true
-  ScriptAsset: !<reference> c43e5f10-7849-461a-b196-daa4e553b147
-  ScriptInputsDefault:
-    toggledOffMaterial: true
-    toggledOffSelectMaterial: true
-    toggledOnMaterial: true
-    toggledOnSelectMaterial: true
-    disabledMaterial: true
-  ScriptTypesDefault:
-    {}
-  ScriptInputs:
-    "":
-      toggledOffMaterial: !<reference.Material> 5e6e1132-90fd-4c58-86f9-eb992e6747f5
-      toggledOffSelectMaterial: !<reference.Material> 5e532a08-3935-4d6f-823a-ad221030c784
-      toggledOnMaterial: !<reference.Material> ba34ce5b-0385-4307-a803-f77fb63d057b
-      toggledOnSelectMaterial: !<reference.Material> 101caa1c-1088-43ed-a87c-0093b8f7e8b1
-      disabledMaterial: !<reference.Material> aacbe4a8-55c5-457a-9a89-7ecf366ca72a
-      meshVisuals: !<reference.RenderMeshVisual[]>
-        - !<reference> 7d33f83d-ac77-4b6d-93cd-4afa4dd7abfd
-  ScriptTypes:
-    "":
-      {}
 - !<SceneObject/d0af4516-d483-45c2-b52a-98798daa54fb>
   PrefabRemaps:
     []
