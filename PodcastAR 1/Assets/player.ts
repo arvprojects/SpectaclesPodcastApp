@@ -13,7 +13,7 @@ export class NewScript extends BaseScriptComponent {
   
     
    // Target timestamps in milliseconds
-  private pollingInterval: number = 1000.0; // Polling interval in seconds
+  private pollingInterval: number = 10000.0; // Polling interval in seconds
   private tolerance: number = 1000; // Tolerance in milliseconds (0.5 seconds)
   private targetMap: Map<string, string> = new Map(); // Stores timestamps and image links
   isPause=false
@@ -24,21 +24,29 @@ export class NewScript extends BaseScriptComponent {
       this.targetMap = map;
       this.pollPlaybackState();
     });
+  
+
   }
   
   // Function to get playback state
-  getPlaybackState() {
+  async getPlaybackState() {
     const accessToken = authtoken
-    let httpRequest = RemoteServiceHttpRequest.create();
-    httpRequest.url = 'https://api.spotify.com/v1/me/player';
-    httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Get;
-    httpRequest.setHeader('Authorization', `Bearer ${accessToken}`);
-    httpRequest.setHeader('Content-Type', 'application/json');
+        
 
-    this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
-            
-      if (response.statusCode === 200) {
-        const data = JSON.parse(response.body);
+   
+     let request = new Request('https://api.spotify.com/v1/me/player', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+     
+        let response = await this.remoteServiceModule.fetch(request);
+        
+
+     if (response.status === 200) {
+        const data = response.json()
         
         const progressMs = data.progress_ms;
         const isPlaying = data.is_playing;
@@ -52,13 +60,13 @@ export class NewScript extends BaseScriptComponent {
             this.onTimestampMatch(this.targetMap.get(key));
           }
         });
-        return progressMs
+            
+        return data;
 
       } else {
         print('Error fetching playback state:');
-        print(response.statusCode);
+        print(response.status);
       }
-    });
         
         
   }
@@ -104,7 +112,7 @@ export class NewScript extends BaseScriptComponent {
   }
     
   playPause(){
-        print(this.isPause)
+       
         if(this.isPause){
             this.startPlayback()
             this.isPause=false
@@ -175,17 +183,19 @@ export class NewScript extends BaseScriptComponent {
     });
   }
     
-  skipAhead(){
+  async skipAhead(){
 
         
-    let current = this.getPlaybackState()
-//     let NewPosition = current+(10*1000)
-        print(current)
+    let body = await this.getPlaybackState();
+        let current = body.progress_ms
+        
+     let NewPosition = current+(10*1000)
+        
         
    let httpRequest = RemoteServiceHttpRequest.create();
    const accessToken = authtoken
-//    httpRequest.url = 'https://api.spotify.com/v1/me/player/seek?position_ms={'+NewPosition+'}';
-//    httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
+    httpRequest.url = `https://api.spotify.com/v1/me/player/seek?position_ms=${NewPosition}`;
+    httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
     httpRequest.setHeader('Authorization', `Bearer ${accessToken}`);
     httpRequest.setHeader('Content-Type', 'application/json');
     
@@ -201,14 +211,16 @@ export class NewScript extends BaseScriptComponent {
         
   }
     async skipBack(){
-      const accessToken = authtoken
+      let body = await this.getPlaybackState();
+        let current = body.progress_ms
         
-    let current = await this.getPlaybackState()
-//     let NewPosition = current+(-10*1000)
-//        
+     let NewPosition = current-(10*1000)
+        
+        
    let httpRequest = RemoteServiceHttpRequest.create();
-//    httpRequest.url = 'https://api.spotify.com/v1/me/player/seek?position_ms=${newPosition}';
-//    httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
+   const accessToken = authtoken
+    httpRequest.url = `https://api.spotify.com/v1/me/player/seek?position_ms=${NewPosition}`;
+    httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
     httpRequest.setHeader('Authorization', `Bearer ${accessToken}`);
     httpRequest.setHeader('Content-Type', 'application/json');
     

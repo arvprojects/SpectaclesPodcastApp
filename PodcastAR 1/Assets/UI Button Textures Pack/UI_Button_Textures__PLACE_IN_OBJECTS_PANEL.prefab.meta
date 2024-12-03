@@ -128,6 +128,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<Image/0d936728-00bb-4cdc-95d9-d7e5a745b4d6>
   PrefabRemaps:
     []
@@ -145,6 +146,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<ScreenTransform/0f8bf6f0-48b3-4f8d-97f7-6f3f3f02b39f>
   PrefabRemaps:
     []
@@ -341,6 +343,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<Image/273d5c1b-2119-44bb-a74b-1e8dfae644c7>
   PrefabRemaps:
     []
@@ -358,6 +361,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<Image/28f5741b-fc8e-480a-931a-27e7c2c9d697>
   PrefabRemaps:
     []
@@ -375,6 +379,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<ScreenTransform/2bc69899-2d85-41c2-b945-cd734c1eea78>
   PrefabRemaps:
     []
@@ -588,6 +593,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<Image/3822a131-f457-4f38-a10f-31ecdef36867>
   PrefabRemaps:
     []
@@ -605,6 +611,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<SceneObject/3b04021d-3422-47cd-8ef2-3f9f2e62dc9a>
   PrefabRemaps:
     []
@@ -703,6 +710,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<SceneObject/416d852d-3581-4430-9e92-1f46f6190a08>
   PrefabRemaps:
     []
@@ -736,6 +744,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<ScreenTransform/45f2247e-8b96-48cd-a875-d90829fa52a3>
   PrefabRemaps:
     []
@@ -833,6 +842,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<SceneObject/47e53f2a-4f37-4807-9991-497a0eecd3c0>
   PrefabRemaps:
     []
@@ -866,6 +876,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<ScreenTransform/4a2c8427-249a-4761-88c2-fd43c8e12833>
   PrefabRemaps:
     []
@@ -916,6 +927,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<SceneObject/516152ee-a318-4638-bea7-97d5c84ca9c0>
   PrefabRemaps:
     []
@@ -949,6 +961,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<SceneObject/59f3c148-8551-4dad-9c39-093a86026620>
   PrefabRemaps:
     []
@@ -982,6 +995,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<ScreenTransform/5fac15e2-2cb7-4803-8ed4-4f8ae7b15c51>
   PrefabRemaps:
     []
@@ -1032,6 +1046,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<SceneObject/6471a7f2-b887-4640-ab75-faafe202b897>
   PrefabRemaps:
     []
@@ -1114,6 +1129,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<SceneObject/74da2656-8ede-434e-a165-f7125ba47b6c>
   PrefabRemaps:
     []
@@ -1180,6 +1196,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<Image/7c9c2c01-b930-4811-8ca4-df59a8974846>
   PrefabRemaps:
     []
@@ -1197,6 +1214,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<SceneObject/7d5a44c0-0f1f-4135-920a-92afe558a2c5>
   PrefabRemaps:
     []
@@ -1469,6 +1487,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<Image/89fc32b4-a062-4ab0-9395-603f76963e82>
   PrefabRemaps:
     []
@@ -1486,6 +1505,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<Image/9068a000-af31-42db-9288-d859b36def47>
   PrefabRemaps:
     []
@@ -1503,6 +1523,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<SceneObject/923b2955-a9b6-4c70-8bd5-ffaa26981349>
   PrefabRemaps:
     []
@@ -1568,6 +1589,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<Image/a79b0c26-20e9-4c33-9d26-c20dc4adb6f6>
   PrefabRemaps:
     []
@@ -1585,6 +1607,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<ScreenTransform/a9e077a0-50ec-4bdf-951e-d5f61f7d65fd>
   PrefabRemaps:
     []
@@ -1668,6 +1691,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<Image/b3f0475d-e79b-49f3-a936-12f898c126bb>
   PrefabRemaps:
     []
@@ -1685,6 +1709,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<ScreenTransform/b4d4ce43-503d-4971-9b0e-a65df45af613>
   PrefabRemaps:
     []
@@ -1790,6 +1815,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<ScreenTransform/c512343a-ffb1-46b6-8644-68face6e8d88>
   PrefabRemaps:
     []
@@ -1986,6 +2012,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<Canvas/e0c3697d-ad2a-4304-ad7c-cecdf223906f>
   PrefabRemaps:
     []
@@ -2162,6 +2189,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<Image/ef15d5c3-f192-4418-aeef-6d7356170a28>
   PrefabRemaps:
     []
@@ -2179,6 +2207,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<ScreenTransform/ef501303-dd0f-4211-b75c-3a173ab527fa>
   PrefabRemaps:
     []
@@ -2245,6 +2274,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<ScreenTransform/f7dab934-b2b4-4b43-9062-cae7db82e4aa>
   PrefabRemaps:
     []
@@ -2328,6 +2358,7 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
 - !<ScreenTransform/fd2c270e-404a-4161-a32e-bf5fedfc20a3>
   PrefabRemaps:
     []
@@ -2378,3 +2409,4 @@
   FlipX: false
   FlipY: false
   Pivot: {x: 0.000000, y: 0.000000}
+  ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000

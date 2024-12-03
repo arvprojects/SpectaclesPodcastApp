@@ -1,14 +1,14 @@
-- !<AssetImportMetadata/08f47869-0d9a-4292-aa4d-33ac541cd6e2>
+- !<AssetImportMetadata/4afe1deb-b8c1-49dd-ae55-cd4764477799>
   ImportedAssetIds:
-    RemoteServiceModule: !<reference> 0c974f8e-7c51-470a-b0b5-d4e0ae45c6db
+    RemoteServiceModule: !<reference> 1eee61b4-8ed2-46a0-baf6-288ed7a93691
   ImporterName: RemoteServiceModuleImporter
-  PrimaryAsset: !<reference> 0c974f8e-7c51-470a-b0b5-d4e0ae45c6db
+  PrimaryAsset: !<reference> 1eee61b4-8ed2-46a0-baf6-288ed7a93691
   PackageType: NotAPackage
   PackagePolicy: CannotBeUnpacked
   AssetDataMap:
     {}
   DependentFiles:
     []
-  ImporterSettings: !<AssetImporterSettings/6c5e88bf-4537-4d72-b2ce-1fcfc0aabdd2>
+  ImporterSettings: !<AssetImporterSettings/d8880779-5ba3-4de8-a681-d218409e088c>
     {}
   CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
