@@ -1,5 +1,10 @@
 const token = require('./spotifyAccessToken')
 const authtoken = token.getToken()
+
+import { Slider } from 'SpectaclesInteractionKit/Components/UI/Slider/Slider';
+import {SpotifyService} from './SpotifyService'
+
+
 @component
 export class NewScript extends BaseScriptComponent {
   @input
@@ -7,6 +12,13 @@ export class NewScript extends BaseScriptComponent {
   @input
   screenImage: Image;
   private remoteMediaModule: RemoteMediaModule = require('LensStudio:RemoteMediaModule');
+    
+  @input
+  Volume: SceneObject;
+  
+  @input
+  Spotify: SpotifyService
+    
 
 
   
@@ -18,36 +30,32 @@ export class NewScript extends BaseScriptComponent {
   private targetMap: Map<string, string> = new Map(); // Stores timestamps and image links
   isPause=false
   
+//  
   onAwake() {
     // Start polling playback state once map is loaded
     this.getMap().then((map) => {
       this.targetMap = map;
       this.pollPlaybackState();
     });
-  
-
-  }
+            
+       
+ }
   
   // Function to get playback state
-  async getPlaybackState() {
-    const accessToken = authtoken
-        
+  async checkTimeStampMatch() {
 
-   
-     let request = new Request('https://api.spotify.com/v1/me/player', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
-      },
-    });
-     
-        let response = await this.remoteServiceModule.fetch(request);
+      let response = await this.Spotify.getPlayBackState();
         
+       if(response ==null){
+     
+            return;
+        }
+       
+      
 
      if (response.status === 200) {
         const data = response.json()
-        
+     
         const progressMs = data.progress_ms;
         const isPlaying = data.is_playing;
 
@@ -81,7 +89,7 @@ export class NewScript extends BaseScriptComponent {
 
   // Recursive function to poll playback state using DelayedCallbackEvent
   pollPlaybackState() {
-    this.getPlaybackState(); // Fetch the playback state
+    this.checkTimeStampMatch(); // Fetch the playback state
 
     // Schedule the next poll using script's DelayedCallbackEvent
     const delayedEvent = this.createEvent("DelayedCallbackEvent");
@@ -124,42 +132,12 @@ export class NewScript extends BaseScriptComponent {
     }
  // Function to start/resume playback
   startPlayback() {
-    const accessToken = authtoken
-    let httpRequest = RemoteServiceHttpRequest.create();
-    httpRequest.url = 'https://api.spotify.com/v1/me/player/play';
-    httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
-    httpRequest.setHeader('Authorization', `Bearer ${accessToken}`);
-    httpRequest.setHeader('Content-Type', 'application/json');
-    httpRequest.setHeader('Content-Length','0')
-
-    this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
-      if (response.statusCode === 200) {
-        print('Playback started successfully');
-      } else {
-        print('Error starting playback:');
-        print(response.statusCode);
-      }
-    });
+    this.Spotify.startPlayBackState()
   }
 
   // Function to pause playback
   pausePlayback() {
-    const accessToken = authtoken
-    let httpRequest = RemoteServiceHttpRequest.create();
-    httpRequest.url = 'https://api.spotify.com/v1/me/player/pause';
-    httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
-    httpRequest.setHeader('Authorization', `Bearer ${accessToken}`);
-    httpRequest.setHeader('Content-Type', 'application/json');
-    httpRequest.setHeader('Content-Length','0')
-
-    this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
-      if (response.statusCode === 200) {
-        print('Playback paused successfully');
-      } else {
-        print('Error pausing playback:');
-        print(response.statusCode);
-      }
-    });
+    this.Spotify.pausePlayBackState()
   }
     
 
@@ -185,58 +163,26 @@ export class NewScript extends BaseScriptComponent {
     
   async skipAhead(){
 
-        
-    let body = await this.getPlaybackState();
-        let current = body.progress_ms
-        
-     let NewPosition = current+(10*1000)
-        
-        
-   let httpRequest = RemoteServiceHttpRequest.create();
-   const accessToken = authtoken
-    httpRequest.url = `https://api.spotify.com/v1/me/player/seek?position_ms=${NewPosition}`;
-    httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
-    httpRequest.setHeader('Authorization', `Bearer ${accessToken}`);
-    httpRequest.setHeader('Content-Type', 'application/json');
-    
-
-    this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
-      if (response.statusCode === 200) {
-        print('Playback skipped successfully');
-      } else {
-        print('Error skipping playback:');
-        print(response.statusCode);
-      }
-    });
-        
+        this.Spotify.skip(10)
   }
     async skipBack(){
-      let body = await this.getPlaybackState();
-        let current = body.progress_ms
-        
-     let NewPosition = current-(10*1000)
-        
-        
-   let httpRequest = RemoteServiceHttpRequest.create();
-   const accessToken = authtoken
-    httpRequest.url = `https://api.spotify.com/v1/me/player/seek?position_ms=${NewPosition}`;
-    httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
-    httpRequest.setHeader('Authorization', `Bearer ${accessToken}`);
-    httpRequest.setHeader('Content-Type', 'application/json');
-    
-
-    this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
-      if (response.statusCode === 200) {
-        print('Playback skipped successfully');
-      } else {
-        print('Error skipping playback:');
-        print(response.statusCode);
-      }
-    });
+      this.Spotify.skip(-10)
         
   }
     
-    changeVolume(){
-//        slider = this.volume.getComponent("Component.Slider")
+    async updateVolume(){
+        let accessToken=authtoken
+       let slider = this.Volume.getComponent(Slider.getTypeName())
+        let volumePercent = Math.floor(slider.currentValue*100) 
+        this.Spotify.updateVolume(volumePercent)
+
+    }
+    
+    async capture(){
+        let body = await this.Spotify.getPlayBackState();
+        let song = body.item.name
+        let progress = body.progress_ms;
+        print("song= "+song+" progress ="+progress)
+        
     }
 }

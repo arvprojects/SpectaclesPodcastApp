@@ -5,12 +5,12 @@
     - !<own> 0005641c-028d-459a-0000-000000014b4d
     - !<own> 597f6fa4-23e5-4230-9e74-1ece142cd000
     - !<own> 13c473e6-4cee-4831-95f6-3c915b84a266
-    - !<own> e1d7e805-df33-4a22-9965-a7a526f3d912
     - !<own> d49a1d41-9ea9-47f8-aff4-3ff11d7f8004
     - !<own> c4fa3b49-9f97-4d1a-8b76-6802a92a00a8
-    - !<own> a6906311-5edc-43be-8d87-911a71226234
     - !<own> 94d3f2dd-04f6-46ec-9823-781e551a831a
     - !<own> 9ea93dc2-6b12-4295-8522-d92d88556dc2
+    - !<own> 664b970f-3761-41ed-bdb6-026c5ae4af05
+    - !<own> 1980b867-fb25-49aa-a1db-82a7f9d2b232
   layers: !<Layers/267ee9a7-aff2-4f9d-9a49-f71214747d03>
     userLayers:
       []
@@ -742,37 +742,6 @@
     - !<own> 8d237f7b-32f4-4019-970c-f7db954b211f
   Components:
     []
-- !<ScriptComponent/0ab9af23-e5ce-4e79-81cb-abf197444c0c>
-  PrefabRemaps:
-    []
-  Name: SliderFeedback
-  Enabled: true
-  ScriptAsset: !<reference> f5721a67-0d8c-4dcb-bc1e-2ce327397845
-  ScriptInputsDefault:
-    showDebug: true
-    sliderKnobIdleMaterial: true
-    sliderKnobSelectedMaterial: true
-    sliderTrackMaterial: true
-    sliderProgressAudio: true
-  ScriptTypesDefault:
-    {}
-  ScriptInputs:
-    "":
-      showDebug: false
-      debugElements: !<reference.SceneObject[]>
-        - !<reference> 1dc6f732-07d0-46b8-a82b-50e4ccb84577
-        - !<reference> faba591d-2cdb-414d-9517-e19d7377c997
-        - !<reference> 82ac17f9-0dd4-433d-9194-fac0ac00fafb
-        - !<reference> 29c8eba5-eba5-432d-9070-f81aaafc6154
-      sliderKnobMesh: !<reference.RenderMeshVisual> 1e358032-89a8-4b10-99c4-1c4c602bcd20
-      sliderKnobIdleMaterial: !<reference.Material> 6f68a780-25ff-4da2-9f8d-031e8320a17c
-      sliderKnobSelectedMaterial: !<reference.Material> c0c8682f-976e-4cf8-a30d-4c8cc4762230
-      sliderTrackMesh: !<reference.RenderMeshVisual> e3f29227-9e94-4d02-84e6-fd1d5cb16af0
-      sliderTrackMaterial: !<reference.Material> b1493bfd-a814-4144-ab5a-e2425a0146a0
-      sliderProgressAudio: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
-  ScriptTypes:
-    "":
-      {}
 - !<SceneObject/0acfd39f-a8fd-4fe0-8945-1a02fbdfb04e>
   PrefabRemaps:
     []
@@ -1591,8 +1560,8 @@
   Components:
     - !<own> 6c93079b-faea-4e15-b964-a12827059e73
     - !<own> dbc483e5-8578-4b86-a229-2aaf936fdbef
-    - !<own> 0ab9af23-e5ce-4e79-81cb-abf197444c0c
     - !<own> f2a176ce-63a5-44bf-91f2-28f14d7c789e
+    - !<own> a724d7e5-c808-4092-996a-02a4846180aa
 - !<RenderMeshVisual/16cfa86e-da32-44bf-8b17-ac3e729ec5f7>
   PrefabRemaps:
     []
@@ -1740,6 +1709,21 @@
     CapitalizationOverride: None
   DepthTest: false
   TwoSided: false
+- !<SceneObject/1980b867-fb25-49aa-a1db-82a7f9d2b232>
+  PrefabRemaps:
+    []
+  Name: SpotifyService
+  Enabled: true
+  Layers: 1
+  LocalTransform:
+    position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    hasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 57dccd87-f049-4b83-8eb1-544c7d371a09
 - !<ScriptComponent/19d4f639-3fc0-4f7f-9976-ee24479a3a9a>
   PrefabRemaps:
     []
@@ -5319,6 +5303,22 @@
   ScriptTypes:
     "":
       {}
+- !<ScriptComponent/57dccd87-f049-4b83-8eb1-544c7d371a09>
+  PrefabRemaps:
+    []
+  Name: SpotifyService
+  Enabled: true
+  ScriptAsset: !<reference> a419b239-36b3-4f94-8aac-85540d0391d4
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      remoteServiceModule: !<reference.RemoteServiceModule> 1eee61b4-8ed2-46a0-baf6-288ed7a93691
+  ScriptTypes:
+    "":
+      {}
 - !<ScreenTransform/58277157-cd72-4e56-9421-d503385b0a1d>
   PrefabRemaps:
     []
@@ -5843,14 +5843,14 @@
   Enabled: true
   ScriptAsset: !<reference> 43a76931-9bde-4e06-95b3-e9128537f344
   ScriptInputsDefault:
-    {}
+    _isToggledOn: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
     "":
       _onIcon: !<reference.SceneObject> 053b18c0-a19c-4d47-95bd-063e69d47553
       _offIcon: !<reference.SceneObject> 589147a8-cc43-45d2-b779-6b881ff9551b
-      _isToggledOn: true
+      _isToggledOn: false
       editEventCallbacks: true
       customFunctionForOnStateChanged: !<reference.ScriptComponent> ad0ace15-7d7a-4a35-bc95-466f1a1134f7
       onStateChangedFunctionNames: !<string[]>
@@ -6296,6 +6296,21 @@
   Components:
     - !<own> fdee8a13-f9d1-4e14-b995-4d937bec6025
     - !<own> 4b9ef5bf-f9e9-4531-971e-de9db375e168
+- !<SceneObject/664b970f-3761-41ed-bdb6-026c5ae4af05>
+  PrefabRemaps:
+    []
+  Name: menuVoiceController
+  Enabled: true
+  Layers: 1
+  LocalTransform:
+    position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    hasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> bde431d2-edcb-4481-b42a-9beefd652c9e
 - !<SceneObject/67650ad6-d8d3-456e-a60f-9f7208551015>
   PrefabRemaps:
     []
@@ -9330,8 +9345,8 @@
   Enabled: true
   Layers: 1
   LocalTransform:
-    position: {x: 0.000000, y: 0.000000, z: 0.000000}
-    rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    position: {x: -55.000000, y: 5.000000, z: 65.000000}
+    rotation: {x: 0.000000, y: -0.000000, z: 0.000000}
     scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     hasSegmentScaleCompensation: false
   Children:
@@ -9353,6 +9368,35 @@
     []
   Components:
     []
+- !<ScriptComponent/a724d7e5-c808-4092-996a-02a4846180aa>
+  PrefabRemaps:
+    []
+  Name: SliderFeedback
+  Enabled: true
+  ScriptAsset: !<reference> f5721a67-0d8c-4dcb-bc1e-2ce327397845
+  ScriptInputsDefault:
+    showDebug: true
+    debugElements: true
+    sliderKnobIdleMaterial: true
+    sliderKnobSelectedMaterial: true
+    sliderTrackMaterial: true
+    sliderProgressAudio: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      showDebug: false
+      debugElements: !<reference.SceneObject[]>
+        []
+      sliderKnobMesh: !<reference.RenderMeshVisual> 1e358032-89a8-4b10-99c4-1c4c602bcd20
+      sliderKnobIdleMaterial: !<reference.Material> 6f68a780-25ff-4da2-9f8d-031e8320a17c
+      sliderKnobSelectedMaterial: !<reference.Material> c0c8682f-976e-4cf8-a30d-4c8cc4762230
+      sliderTrackMesh: !<reference.RenderMeshVisual> e3f29227-9e94-4d02-84e6-fd1d5cb16af0
+      sliderTrackMaterial: !<reference.Material> b1493bfd-a814-4144-ab5a-e2425a0146a0
+      sliderProgressAudio: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/a73489e9-339f-4854-98ff-84a08ef3e089>
   PrefabRemaps:
     []
@@ -9608,8 +9652,11 @@
   ScriptAsset: !<reference> f5721a67-0d8c-4dcb-bc1e-2ce327397845
   ScriptInputsDefault:
     showDebug: true
+    debugElements: true
+    sliderKnobMesh: true
     sliderKnobIdleMaterial: true
     sliderKnobSelectedMaterial: true
+    sliderTrackMesh: true
     sliderTrackMaterial: true
     sliderProgressAudio: true
   ScriptTypesDefault:
@@ -9618,14 +9665,11 @@
     "":
       showDebug: false
       debugElements: !<reference.SceneObject[]>
-        - !<reference> 46fb9aaa-d258-485c-beef-6b7e662ea317
-        - !<reference> efa5291d-c6f8-4527-85f3-4ca4fd596089
-        - !<reference> a57a7ca3-e822-4148-855b-96a8a55a5b94
-        - !<reference> 861f0398-3ab0-4833-8f73-ad6c71d28770
-      sliderKnobMesh: !<reference.RenderMeshVisual> 2a30125f-13fc-4b98-b43f-cdf599c2ede0
+        []
+      sliderKnobMesh: !<reference.RenderMeshVisual> 00000000-0000-0000-0000-000000000000
       sliderKnobIdleMaterial: !<reference.Material> 6f68a780-25ff-4da2-9f8d-031e8320a17c
       sliderKnobSelectedMaterial: !<reference.Material> c0c8682f-976e-4cf8-a30d-4c8cc4762230
-      sliderTrackMesh: !<reference.RenderMeshVisual> fb412d06-bbc3-4c83-b120-f0eda092e7a1
+      sliderTrackMesh: !<reference.RenderMeshVisual> 00000000-0000-0000-0000-000000000000
       sliderTrackMaterial: !<reference.Material> b1493bfd-a814-4144-ab5a-e2425a0146a0
       sliderProgressAudio: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
@@ -9837,6 +9881,8 @@
     "":
       remoteServiceModule: !<reference.RemoteServiceModule> 1eee61b4-8ed2-46a0-baf6-288ed7a93691
       screenImage: !<reference.Image> 280161fc-ecfa-45e5-9209-d2f7c3ce3411
+      Volume: !<reference.SceneObject> 1694183f-f2a8-4fdc-a0e0-0a9f46b3a348
+      Spotify: !<MappingBased.SpotifyService> 57dccd87-f049-4b83-8eb1-544c7d371a09
   ScriptTypes:
     "":
       {}
@@ -10325,8 +10371,11 @@
   ScriptAsset: !<reference> f5721a67-0d8c-4dcb-bc1e-2ce327397845
   ScriptInputsDefault:
     showDebug: true
+    debugElements: true
+    sliderKnobMesh: true
     sliderKnobIdleMaterial: true
     sliderKnobSelectedMaterial: true
+    sliderTrackMesh: true
     sliderTrackMaterial: true
     sliderProgressAudio: true
   ScriptTypesDefault:
@@ -10335,14 +10384,11 @@
     "":
       showDebug: false
       debugElements: !<reference.SceneObject[]>
-        - !<reference> b660dca1-2c7a-49f5-b93b-d20fa87a627f
-        - !<reference> 2b0cbf61-8c95-4d8d-832b-00eb2fa10ef3
-        - !<reference> 152e60ef-3f18-4725-8691-1a7fb85642a3
-        - !<reference> e75d4d70-39a4-4c0c-ab48-71e782adaef7
-      sliderKnobMesh: !<reference.RenderMeshVisual> 527f0a43-7b22-49f0-bb29-43ac1d291b51
+        []
+      sliderKnobMesh: !<reference.RenderMeshVisual> 00000000-0000-0000-0000-000000000000
       sliderKnobIdleMaterial: !<reference.Material> 6f68a780-25ff-4da2-9f8d-031e8320a17c
       sliderKnobSelectedMaterial: !<reference.Material> c0c8682f-976e-4cf8-a30d-4c8cc4762230
-      sliderTrackMesh: !<reference.RenderMeshVisual> 2fe53668-a8ea-4056-91d0-7b473bed4ed4
+      sliderTrackMesh: !<reference.RenderMeshVisual> 00000000-0000-0000-0000-000000000000
       sliderTrackMaterial: !<reference.Material> b1493bfd-a814-4144-ab5a-e2425a0146a0
       sliderProgressAudio: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
@@ -10470,6 +10516,22 @@
       disabledMaterial: !<reference.Material> aacbe4a8-55c5-457a-9a89-7ecf366ca72a
       meshVisuals: !<reference.RenderMeshVisual[]>
         - !<reference> f7dbcf9d-157e-4b98-9b2a-725d70a1aa56
+  ScriptTypes:
+    "":
+      {}
+- !<ScriptComponent/bde431d2-edcb-4481-b42a-9beefd652c9e>
+  PrefabRemaps:
+    []
+  Name: menuVoiceController
+  Enabled: true
+  ScriptAsset: !<reference> a3b79c16-635d-438e-9f9a-f30f5cd56769
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      vmlModule: !<reference.VoiceMLModule> cbae2490-a66c-4bd8-a6df-32dbd8629110
   ScriptTypes:
     "":
       {}
@@ -11359,17 +11421,15 @@
   Enabled: true
   ScriptAsset: !<reference> a54c5722-d3fb-4aa5-97ff-f7425978bc59
   ScriptInputsDefault:
-    editEventCallbacks: true
-    customFunctionForOnButtonPinched: true
-    onButtonPinchedFunctionNames: true
+    {}
   ScriptTypesDefault:
     {}
   ScriptInputs:
     "":
-      editEventCallbacks: false
-      customFunctionForOnButtonPinched: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
+      editEventCallbacks: true
+      customFunctionForOnButtonPinched: !<reference.ScriptComponent> ad0ace15-7d7a-4a35-bc95-466f1a1134f7
       onButtonPinchedFunctionNames: !<string[]>
-        []
+        - capture
   ScriptTypes:
     "":
       {}
@@ -11594,6 +11654,8 @@
     hasSegmentScaleCompensation: false
   Children:
     - !<own> 005d9410-92ee-424b-b0ae-d85236150c34
+    - !<own> a6906311-5edc-43be-8d87-911a71226234
+    - !<own> e1d7e805-df33-4a22-9965-a7a526f3d912
   Components:
     - !<own> fe4bc886-02e5-426a-901f-df76f3ac58c8
 - !<SceneObject/d5638ffb-21ea-4e36-bd73-b23a90c4a9fd>
@@ -11960,15 +12022,12 @@
     stepBehavior: true
     _stepSize: true
     toggleDuration: true
-    editEventCallbacks: true
     customFunctionForOnHoverEnter: true
     onHoverEnterFunctionNames: true
     customFunctionForOnHoverExit: true
     onHoverExitFunctionNames: true
     customFunctionForOnSlideStart: true
     onSlideStartFunctionNames: true
-    customFunctionForOnSlideEnd: true
-    onSlideEndFunctionNames: true
     customFunctionForOnValueUpdate: true
     onValueUpdateFunctionNames: true
     customFunctionForOnMinValueReached: true
@@ -11988,7 +12047,7 @@
       sliderMin: !<reference.SceneObject> 1dc6f732-07d0-46b8-a82b-50e4ccb84577
       sliderMax: !<reference.SceneObject> faba591d-2cdb-414d-9517-e19d7377c997
       _sliderKnob: !<reference.SceneObject> 7b847582-8dd4-4938-a7a6-15c35b0d22ae
-      editEventCallbacks: false
+      editEventCallbacks: true
       customFunctionForOnHoverEnter: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
       onHoverEnterFunctionNames: !<string[]>
         []
@@ -11998,9 +12057,9 @@
       customFunctionForOnSlideStart: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
       onSlideStartFunctionNames: !<string[]>
         []
-      customFunctionForOnSlideEnd: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
+      customFunctionForOnSlideEnd: !<reference.ScriptComponent> ad0ace15-7d7a-4a35-bc95-466f1a1134f7
       onSlideEndFunctionNames: !<string[]>
-        []
+        - updateVolume
       customFunctionForOnValueUpdate: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
       onValueUpdateFunctionNames: !<string[]>
         []
@@ -12258,8 +12317,8 @@
   Enabled: true
   Layers: 1
   LocalTransform:
-    position: {x: 0.000000, y: 0.000000, z: 0.000000}
-    rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    position: {x: -55.000000, y: 5.000000, z: 65.000000}
+    rotation: {x: 0.000000, y: -0.000000, z: 0.000000}
     scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     hasSegmentScaleCompensation: false
   Children:
