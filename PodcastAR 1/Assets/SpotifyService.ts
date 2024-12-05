@@ -10,6 +10,8 @@ export class SpotifyService extends BaseScriptComponent {
     //set up remote service module
 @input 
 remoteServiceModule: RemoteServiceModule;
+    
+
 private remoteMediaModule: RemoteMediaModule = require('LensStudio:RemoteMediaModule');
 
     onAwake() {
