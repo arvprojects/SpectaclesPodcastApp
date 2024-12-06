@@ -1,0 +1,48 @@
+- !<AssetImportMetadata/751bd1a0-662e-4a19-9049-a62b48eac27c>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 2e6d594a-d788-4646-9c58-96cf0f50c4fd
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 2e6d594a-d788-4646-9c58-96cf0f50c4fd
+  PackageType: NotAPackage
+  PackagePolicy: CannotBeUnpacked
+  AssetDataMap:
+    TypeScriptAsset: !<own> c85b522f-685e-4a65-bb81-9dbd70eaf7ff
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings/5f985124-4d72-4f7e-87a5-21640581c220>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/c85b522f-685e-4a65-bb81-9dbd70eaf7ff>
+  SvgIcon: ""
+  Description: ""
+  InternalVersion: 0
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 00000000-0000-0000-0000-000000000000
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  CurrentVisibility: Editable
+  MaxVisibility: Editable
+  ScriptInputsHidden:
+    containerFrame1: false
+    containerFrame2: false
+    containerFrame3: false
+    containerFrame4: false
+    remoteServiceModule: false
+  ScriptTypesHidden:
+    {}
+  DefaultScriptInputs:
+    - containerFrame1: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
+      containerFrame2: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
+      containerFrame3: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
+      containerFrame4: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
+      remoteServiceModule: !<reference.RemoteServiceModule> 1eee61b4-8ed2-46a0-baf6-288ed7a93691
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - // @input Component.ScriptComponent containerFrame1
+    - // @input Component.ScriptComponent containerFrame2
+    - // @input Component.ScriptComponent containerFrame3
+    - // @input Component.ScriptComponent containerFrame4
+    - // @input Asset.RemoteServiceModule remoteServiceModule

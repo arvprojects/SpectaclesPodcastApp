@@ -123,7 +123,7 @@ const fs = require('fs');
   }
 
   function saveTokens(accessToken, refreshToken) {
-    const filePath = '/Users/veerenpatel/desktop/Snap/SpectaclesPodcastApp/PodcastAR 1/Assets/spotifyAccessToken.js';
+    const filePath = '/Users/veerenpatel/SpectaclesPodcastApp/PodcastAR 1/Assets/spotifyAccessToken.js';
     const fileContent = `
       function getToken() {
         return '${accessToken}';

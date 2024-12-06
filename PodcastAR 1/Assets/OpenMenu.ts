@@ -2,7 +2,7 @@ import { SIK } from './SpectaclesInteractionKit/SIK';
 
 @component
 export class ExampleHandScript extends BaseScriptComponent {
-  @input text: Text
+  
   @input('Component.ScriptComponent') containerFrame: any;
   @input audio: AudioComponent
 

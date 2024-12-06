@@ -26,17 +26,14 @@
   ScriptInputsHidden:
     audio: false
     containerFrame: false
-    text: false
   ScriptTypesHidden:
     {}
   DefaultScriptInputs:
-    - text: !<reference.Text> 00000000-0000-0000-0000-000000000000
-      containerFrame: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
+    - containerFrame: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
       audio: !<reference.AudioComponent> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     -
       {}
   InputLines:
-    - // @input Component.Text text
     - // @input Component.ScriptComponent containerFrame
     - // @input Component.AudioComponent audio

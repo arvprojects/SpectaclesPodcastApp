@@ -2,15 +2,21 @@ const token = require('./spotifyAccessToken')
 const authtoken = token.getToken()
 
 import { Slider } from 'SpectaclesInteractionKit/Components/UI/Slider/Slider';
-import {SpotifyService} from './SpotifyService'
+import {SpotifyService} from './SpotifyClient'
+
+import {ApplicationRepository} from './ApplicationRepository'
+
 
 
 @component
 export class NewScript extends BaseScriptComponent {
   @input
   remoteServiceModule: RemoteServiceModule;
-  @input
-  screenImage: Image;
+    
+ @input 
+    screenImage:Image
+    
+    
   private remoteMediaModule: RemoteMediaModule = require('LensStudio:RemoteMediaModule');
     
   @input
@@ -19,13 +25,13 @@ export class NewScript extends BaseScriptComponent {
   @input
   Spotify: SpotifyService
     
-
-
-  
-  
+  @input
+  AppRepository: ApplicationRepository
+   
+    
     
    // Target timestamps in milliseconds
-  private pollingInterval: number = 10000.0; // Polling interval in seconds
+  private pollingInterval: number = 1000.0; // Polling interval in seconds
   private tolerance: number = 1000; // Tolerance in milliseconds (0.5 seconds)
   private targetMap: Map<string, string> = new Map(); // Stores timestamps and image links
   isPause=false
@@ -33,10 +39,10 @@ export class NewScript extends BaseScriptComponent {
 //  
   onAwake() {
     // Start polling playback state once map is loaded
-    this.getMap().then((map) => {
-      this.targetMap = map;
-      this.pollPlaybackState();
-    });
+//    this.getMap().then((map) => {
+//      this.targetMap = map;
+//      this.pollPlaybackState();
+//    });
             
        
  }
@@ -117,6 +123,7 @@ export class NewScript extends BaseScriptComponent {
         );
       }
     });
+       
   }
     
   playPause(){
@@ -142,23 +149,36 @@ export class NewScript extends BaseScriptComponent {
     
 
   // Function to get map from Firebase
-  getMap(): Promise<Map<string, string>> {
-    return new Promise((resolve) => {
-      let httpRequest = RemoteServiceHttpRequest.create();
-      let itemMap = new Map<string, string>();
-      httpRequest.url = "https://podcastar-a2109-default-rtdb.firebaseio.com/.json"; 
-      httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Get;
-      
-      this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
-        if (response.statusCode === 200) {
-          const responseData = JSON.parse(response.body);
-          responseData.forEach((dispObj) => {
+  async getMap(): Promise<Map<string, string>> {
+        
+        
+//    return new Promise((resolve) => {
+//      let httpRequest = RemoteServiceHttpRequest.create();
+//      let itemMap = new Map<string, string>();
+//      httpRequest.url = "https://podcastar-a2109-default-rtdb.firebaseio.com/.json"; 
+//      httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Get;
+//      
+//      this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
+//        if (response.statusCode === 200) {
+//          const responseData = JSON.parse(response.body);
+//          responseData.forEach((dispObj) => {
+//            itemMap.set(dispObj.timestamp, dispObj.imgLink);
+//          });
+//        }
+//        resolve(itemMap);
+//      });
+//    });
+        
+    let db = await this.AppRepository.getDB();
+    let itemMap = new Map<string, string>();
+        
+    db.forEach((dispObj) => {
             itemMap.set(dispObj.timestamp, dispObj.imgLink);
           });
-        }
-        resolve(itemMap);
-      });
-    });
+        
+        print(db)
+   return itemMap;
+     
   }
     
   async skipAhead(){
@@ -186,3 +206,5 @@ export class NewScript extends BaseScriptComponent {
         
     }
 }
+
+
