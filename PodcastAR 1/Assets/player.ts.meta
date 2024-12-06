@@ -24,6 +24,9 @@
   CurrentVisibility: Editable
   MaxVisibility: Editable
   ScriptInputsHidden:
+    AppRepository: false
+    Spotify: false
+    Volume: false
     remoteServiceModule: false
     screenImage: false
   ScriptTypesHidden:
@@ -31,9 +34,15 @@
   DefaultScriptInputs:
     - remoteServiceModule: !<reference.RemoteServiceModule> 00000000-0000-0000-0000-000000000000
       screenImage: !<reference.Image> 00000000-0000-0000-0000-000000000000
+      Volume: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      Spotify: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      AppRepository: !<MappingBased.ApplicationRepository> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     -
       {}
   InputLines:
     - // @input Asset.RemoteServiceModule remoteServiceModule
     - // @input Component.Image screenImage
+    - // @input SceneObject Volume
+    - // @input SpotifyClient Spotify
+    - // @input ApplicationRepository AppRepository

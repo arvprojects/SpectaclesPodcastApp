@@ -2,9 +2,9 @@
   PackagePath: ""
   StudioVersion:
     major: 5
-    minor: 2
+    minor: 3
     patch: 0
-    build: 24100212
+    build: 24111410
     type: Unset
   Description: Release
   SvgIcon: ""

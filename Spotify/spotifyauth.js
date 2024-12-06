@@ -123,7 +123,7 @@ const fs = require('fs');
   }
 
   function saveTokens(accessToken, refreshToken) {
-    const filePath = '/Users/rushisurampudi/arvprojects/SpectaclesPodcastApp/PodcastAR 1/Assets/spotifyAccessToken.js';
+    const filePath = '/Users/veerenpatel/SpectaclesPodcastApp/PodcastAR 1/Assets/spotifyAccessToken.js';
     const fileContent = `
       function getToken() {
         return '${accessToken}';
@@ -139,7 +139,7 @@ const fs = require('fs');
   }
 
   async function getValidAccessToken() {
-    const { authtoken, refreshToken, tokenExpiryTime } = require('/Users/rushisurampudi/arvprojects/SpectaclesPodcastApp/PodcastAR 1/Assets/spotifyAccessToken.js');
+    const { authtoken, refreshToken, tokenExpiryTime } = require('/Users/veerenpatel/desktop/Snap/SpectaclesPodcastApp/PodcastAR 1/Assets/spotifyAccessToken.js');
     
     if (Date.now() >= tokenExpiryTime) {
       console.log('Access token expired, refreshing...');

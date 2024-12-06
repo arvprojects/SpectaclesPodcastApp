@@ -1,0 +1,48 @@
+- !<AssetImportMetadata/b36429c5-4c48-4b31-b105-1f2698f6a1c6>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> cfd3f83f-549c-4974-8fd2-e173209b4434
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> cfd3f83f-549c-4974-8fd2-e173209b4434
+  PackageType: NotAPackage
+  PackagePolicy: CannotBeUnpacked
+  AssetDataMap:
+    TypeScriptAsset: !<own> 88339def-fa60-498b-8d6e-070ae96c76ed
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings/5ea8e945-6c01-42f8-8580-767dc323be84>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/88339def-fa60-498b-8d6e-070ae96c76ed>
+  SvgIcon: ""
+  Description: ""
+  InternalVersion: 0
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 00000000-0000-0000-0000-000000000000
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  CurrentVisibility: Editable
+  MaxVisibility: Editable
+  ScriptInputsHidden:
+    AppRepository: false
+    Spotify: false
+    imagesManager: false
+    remoteServiceModule: false
+    screenImage: false
+  ScriptTypesHidden:
+    {}
+  DefaultScriptInputs:
+    - Spotify: !<MappingBased.SpotifyClient> 00000000-0000-0000-0000-000000000000
+      AppRepository: !<MappingBased.ApplicationRepository> 00000000-0000-0000-0000-000000000000
+      remoteServiceModule: !<reference.RemoteServiceModule> 00000000-0000-0000-0000-000000000000
+      screenImage: !<reference.Image> 00000000-0000-0000-0000-000000000000
+      imagesManager: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - // @input SpotifyClient Spotify
+    - // @input ApplicationRepository AppRepository
+    - // @input Asset.RemoteServiceModule remoteServiceModule
+    - // @input Component.Image screenImage
+    - // @input SceneObject imagesManager
