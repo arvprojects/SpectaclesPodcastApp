@@ -1,24 +1,41 @@
+import { ScreenImageCreator } from './ScreenImageCreator';
+import { ImagesManager } from './ImagesManager';
 const token = require('./spotifyAccessToken')
 const authtoken = token.getToken()
+
+
 @component
 export class NewScript extends BaseScriptComponent {
   @input
-  remoteServiceModule: RemoteServiceModule;
-  @input
-  screenImage: Image;
-  private remoteMediaModule: RemoteMediaModule = require('LensStudio:RemoteMediaModule');
+  screenImageCreator:SceneObject;
 
+  @input
+  imagesManager: SceneObject;
+
+  @input
+  initialContainerFrame:SceneObject;
+
+  @input
+  remoteServiceModule: RemoteServiceModule;
+
+  private remoteMediaModule: RemoteMediaModule = require('LensStudio:RemoteMediaModule');
+    
+ 
    // Target timestamps in milliseconds
-  private pollingInterval: number = 1.0; // Polling interval in seconds
-  private tolerance: number = 1000; // Tolerance in milliseconds (0.5 seconds)
-  private targetMap: Map<string, string> = new Map(); // Stores timestamps and image links
+  private pollingInterval: number = 1; // Polling interval in seconds
+  private tolerance: number = 500; // Tolerance in milliseconds (0.25 seconds)
+  private targetMap: Map<string, { duration: number; imageLink: string; title: string }[]> = new Map();
   
+    
   onAwake() {
     // Start polling playback state once map is loaded
     this.getMap().then((map) => {
       this.targetMap = map;
       this.pollPlaybackState();
     });
+      print(this.initialContainerFrame.getChild(0).name)
+    
+
   }
   
   // Function to get playback state
@@ -37,14 +54,23 @@ export class NewScript extends BaseScriptComponent {
         const isPlaying = data.is_playing;
 
         print(`Current timestamp: ${progressMs}, Is playing: ${isPlaying}`);
-        
+        let matchingTimestamps: { duration: number; imageLink: string; title: string }[] = [];
+                
         // Check if the current timestamp is within the tolerance range of any target timestamps
         Array.from(this.targetMap.keys()).forEach((key) => {
           const targetTimestamp = parseInt(key, 10);
           if (Math.abs(targetTimestamp - progressMs) <= this.tolerance) {
-            this.onTimestampMatch(this.targetMap.get(key));
+            const targets = this.targetMap.get(key);
+            if (targets){
+                matchingTimestamps.push(...targets);
+            }
           }
         });
+                
+        if (matchingTimestamps.length > 0){
+            print("found matches")
+            this.onTimestampMatch(matchingTimestamps);                    
+        }
 
       } else {
         print('Error fetching playback state:');
@@ -54,12 +80,24 @@ export class NewScript extends BaseScriptComponent {
   }
   
   // Function to handle when a timestamp match is found
-  onTimestampMatch(imgLink: string | undefined) {
-    if (imgLink) {
-      print(`Timestamp matched! Fetching image from: ${imgLink}`);
-      this.generateImage(imgLink);
+  onTimestampMatch(matches: { duration: number; imageLink: string; title: string }[]) {
+    if (matches.length > 0) {
+        matches.forEach((match) => {
+          print(`Timestamp matched! Title: ${match.title}, Fetching image from: ${match.imageLink}`);
+          // let screenCreator = this.screenImageCreator.getComponent(ScreenImageCreator.getTypeName());       
+          //  screenCreator.createScreenImage(match.imageLink, match.duration);
+
+          let imgGenerator = this.imagesManager.getComponent(ImagesManager.getTypeName());
+          imgGenerator.showScreenImage(match.imageLink, match.duration);
+
+        });
+      } else {
+        print("No matching timestamps found.");
     }
+
   }
+    
+    
 
   // Recursive function to poll playback state using DelayedCallbackEvent
   pollPlaybackState() {
@@ -71,27 +109,7 @@ export class NewScript extends BaseScriptComponent {
     delayedEvent.reset(this.pollingInterval); // Set delay in seconds
   }
 
-  // Function to generate an image from a URL and set it as the screen image
-  generateImage(reqLink: string) {
-    let httpRequest = RemoteServiceHttpRequest.create();
-    httpRequest.url = reqLink;
-    httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Get;
-    
-    this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
-      if (response.statusCode === 200) {
-        let textureResource = response.asResource();
-        this.remoteMediaModule.loadResourceAsImageTexture(
-          textureResource,
-          (texture) => {
-            this.screenImage.mainPass.baseTex = texture;
-          },
-          (error) => {
-            print('Error loading image texture: ' + error);
-          }
-        );
-      }
-    });
-  }
+
  // Function to start/resume playback
   startPlayback() {
     const accessToken = authtoken
@@ -132,22 +150,30 @@ export class NewScript extends BaseScriptComponent {
     });
   }
   // Function to get map from Firebase
-  getMap(): Promise<Map<string, string>> {
+  getMap(): Promise<Map<string, { duration: number; imageLink: string; title: string }[]>> {
     return new Promise((resolve) => {
       let httpRequest = RemoteServiceHttpRequest.create();
-      let itemMap = new Map<string, string>();
-      httpRequest.url = "https://podcastar-a2109-default-rtdb.firebaseio.com/.json"; 
+      httpRequest.url = "https://podcastar-a2109-testdb.firebaseio.com/.json"; 
       httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Get;
       
       this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
-        if (response.statusCode === 200) {
-          const responseData = JSON.parse(response.body);
-          responseData.forEach((dispObj) => {
-            itemMap.set(dispObj.timestamp, dispObj.imgLink);
-          });
-        }
-        resolve(itemMap);
-      });
+          if (response.statusCode === 200) {
+            const responseData = JSON.parse(response.body);
+        
+            Object.keys(responseData).forEach((key) => {
+              const items = Object.values(responseData[key]); // Get the values of each key group
+              const formattedItems = items.map((item: any) => ({
+                  duration: item.duration,
+                  imageLink: item.imageLink,
+                  title: item.title,
+                }));
+              this.targetMap.set(key, formattedItems); // Set the key with formatted items
+            });
+        
+            print(this.targetMap); // Verify the output
+          }
+          resolve(this.targetMap);
+        });
     });
   }
 }

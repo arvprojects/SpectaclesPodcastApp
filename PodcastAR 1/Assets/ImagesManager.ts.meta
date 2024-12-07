@@ -1,0 +1,51 @@
+- !<AssetImportMetadata/d4f5458b-288f-481d-b1f0-63aab3fcd5bf>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 2a9004ff-aad4-494f-ae9c-411b3f6f8966
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 2a9004ff-aad4-494f-ae9c-411b3f6f8966
+  PackageType: NotAPackage
+  PackagePolicy: CannotBeUnpacked
+  AssetDataMap:
+    TypeScriptAsset: !<own> a83f34aa-42fe-4f9a-9a3d-f696a95723e8
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings/a87686d5-ba94-428a-b44a-b0980857e04e>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/a83f34aa-42fe-4f9a-9a3d-f696a95723e8>
+  SvgIcon: ""
+  Description: ""
+  InternalVersion: 0
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 00000000-0000-0000-0000-000000000000
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  CurrentVisibility: Editable
+  MaxVisibility: Editable
+  ScriptInputsHidden:
+    containerFrame1: false
+    containerFrame2: false
+    containerFrame3: false
+    containerFrame4: false
+    containerFrame5: false
+    remoteServiceModule: false
+  ScriptTypesHidden:
+    {}
+  DefaultScriptInputs:
+    - containerFrame1: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      containerFrame2: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      containerFrame3: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      containerFrame4: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      containerFrame5: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      remoteServiceModule: !<reference.RemoteServiceModule> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - // @input Component.ScriptComponent containerFrame1
+    - // @input Component.ScriptComponent containerFrame2
+    - // @input Component.ScriptComponent containerFrame3
+    - // @input Component.ScriptComponent containerFrame4
+    - // @input Component.ScriptComponent containerFrame5
+    - // @input Asset.RemoteServiceModule remoteServiceModule

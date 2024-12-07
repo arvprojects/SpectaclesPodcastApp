@@ -44,7 +44,7 @@ const fs = require('fs');
   async function startNgrok() {
     console.log('Starting ngrok...');
     return new Promise((resolve, reject) => {
-      exec('ngrok http 3000', (error, stdout, stderr) => {
+      exec('/Users/adityapawar/.npm-global/bin/ngrok http 3000', (error, stdout, stderr) => {
         if (error) {
           reject(`ngrok error: ${stderr}`);
         }
@@ -123,7 +123,7 @@ const fs = require('fs');
   }
 
   function saveTokens(accessToken, refreshToken) {
-    const filePath = '/Users/rushisurampudi/arvprojects/SpectaclesPodcastApp/PodcastAR 1/Assets/spotifyAccessToken.js';
+    const filePath = '/Users/adityapawar/Spectacles/SpectaclesPodcastApp/PodcastAR 1/Assets/spotifyAccessToken.js';
     const fileContent = `
       function getToken() {
         return '${accessToken}';

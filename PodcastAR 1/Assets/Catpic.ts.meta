@@ -24,16 +24,13 @@
   CurrentVisibility: Editable
   MaxVisibility: Editable
   ScriptInputsHidden:
-    Image: false
     remoteServiceModule: false
   ScriptTypesHidden:
     {}
   DefaultScriptInputs:
     - remoteServiceModule: !<reference.RemoteServiceModule> 0c974f8e-7c51-470a-b0b5-d4e0ae45c6db
-      Image: !<reference.Image> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     -
       {}
   InputLines:
     - // @input Asset.RemoteServiceModule remoteServiceModule
-    - // @input Component.Image Image

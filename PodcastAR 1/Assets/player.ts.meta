@@ -24,16 +24,22 @@
   CurrentVisibility: Editable
   MaxVisibility: Editable
   ScriptInputsHidden:
+    imagesManager: false
+    initialContainerFrame: false
     remoteServiceModule: false
-    screenImage: false
+    screenImageCreator: false
   ScriptTypesHidden:
     {}
   DefaultScriptInputs:
-    - remoteServiceModule: !<reference.RemoteServiceModule> 00000000-0000-0000-0000-000000000000
-      screenImage: !<reference.Image> 00000000-0000-0000-0000-000000000000
+    - remoteServiceModule: !<reference.RemoteServiceModule> 0c974f8e-7c51-470a-b0b5-d4e0ae45c6db
+      screenImageCreator: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      initialContainerFrame: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      imagesManager: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     -
       {}
   InputLines:
+    - // @input SceneObject screenImageCreator
+    - // @input SceneObject imagesManager
+    - // @input SceneObject initialContainerFrame
     - // @input Asset.RemoteServiceModule remoteServiceModule
-    - // @input Component.Image screenImage
