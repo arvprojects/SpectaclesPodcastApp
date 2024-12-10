@@ -27,6 +27,7 @@ private remoteMediaModule: RemoteMediaModule = require('LensStudio:RemoteMediaMo
       headers: {
         'Authorization': `Bearer ${authtoken}`,
         'Content-Type': 'application/json',
+        'Content-Length':'0'
       },
     });
      
@@ -97,6 +98,7 @@ private remoteMediaModule: RemoteMediaModule = require('LensStudio:RemoteMediaMo
     httpRequest.method = RemoteServiceHttpRequest.HttpRequestMethod.Put;
     httpRequest.setHeader('Authorization', `Bearer ${authtoken}`);
     httpRequest.setHeader('Content-Type', 'application/json');
+    httpRequest.setHeader('Content-Length','0');
     
 
     this.remoteServiceModule.performHttpRequest(httpRequest, (response) => {
@@ -117,6 +119,7 @@ private remoteMediaModule: RemoteMediaModule = require('LensStudio:RemoteMediaMo
             headers: {
               'Authorization': `Bearer ${authtoken}`,
               'Content-Type': 'application/json',
+                'Content-Length':'0'
             },
           });
            

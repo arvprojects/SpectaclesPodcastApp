@@ -1078,9 +1078,9 @@
   Enabled: true
   Layers: 1
   LocalTransform:
-    position: {x: 0.634835, y: 9.399761, z: 23.870949}
-    rotation: {x: 0.000000, y: 7.394278, z: 0.000000}
-    scale: {x: 0.004376, y: 0.004058, z: 1.000000}
+    position: {x: 11.808671, y: -12.536865, z: 11.074160}
+    rotation: {x: 0.000000, y: -21.191113, z: 0.000000}
+    scale: {x: 0.004419, y: 0.004058, z: 1.000162}
     hasSegmentScaleCompensation: false
   Children:
     - !<own> d7644982-79ff-417a-bb50-0e4bd36644fe
@@ -7208,9 +7208,9 @@
   Enabled: true
   Layers: 1
   LocalTransform:
-    position: {x: -104.414047, y: 26.167912, z: -288.759399}
-    rotation: {x: 0.000000, y: 11.924260, z: 0.000000}
-    scale: {x: 0.001699, y: 0.001518, z: 1.000000}
+    position: {x: 67.824287, y: 4.231285, z: -314.280212}
+    rotation: {x: 0.000000, y: -16.703146, z: 0.000000}
+    scale: {x: 0.001715, y: 0.001518, z: 1.000418}
     hasSegmentScaleCompensation: false
   Children:
     - !<own> 73cd7d7f-b17a-47c6-8086-cc7c6c0cbef9
@@ -8110,6 +8110,7 @@
     itemSnapping: true
     worldSnapping: true
     showFollowButton: true
+    isFollowing: true
     showCloseButton: true
   ScriptTypesDefault:
     {}
@@ -8136,7 +8137,7 @@
       worldSnapping: false
       showFollowButton: false
       useFOVFollow: true
-      isFollowing: true
+      isFollowing: false
       showCloseButton: true
   ScriptTypes:
     "":
@@ -8653,9 +8654,9 @@
   Enabled: true
   Layers: 1
   LocalTransform:
-    position: {x: 11.915171, y: 9.680294, z: 22.166182}
-    rotation: {x: -6.525248, y: 6.887231, z: 0.000000}
-    scale: {x: 0.046536, y: 0.039027, z: 1.000000}
+    position: {x: 22.632961, y: -12.256332, z: 15.014479}
+    rotation: {x: -6.526161, y: -21.693327, z: 0.000000}
+    scale: {x: 0.046991, y: 0.039027, z: 1.000139}
     hasSegmentScaleCompensation: false
   Children:
     - !<own> e73ebaeb-a4db-45e3-a7df-4f8fc1da735a
@@ -9486,6 +9487,10 @@
     - !<own> cefbf2d0-7e22-42b7-967d-50cbbcd42d9e
     - !<own> ed46928d-23c6-4a13-9c9c-1aecaa3e4892
     - !<own> a527770b-9f24-4563-beba-e9a3f9bfaeda
+    - !<own> a004f2ad-9598-49d8-9cbc-b129d57319df
+    - !<own> 6d68f311-0691-4098-8c01-cd7405cf0204
+    - !<own> 0e8d2647-00a9-4a89-bcbc-76509ca42f69
+    - !<own> 8945ab65-bb3a-4c6d-93af-66e16a5b4d9b
   Components:
     []
 - !<ScriptComponent/98221e8e-1279-4b33-a8a3-e7e907a18de1>
@@ -9807,9 +9812,9 @@
   Enabled: true
   Layers: 1
   LocalTransform:
-    position: {x: -48.807808, y: 38.521034, z: -67.345001}
-    rotation: {x: 0.000000, y: 28.154764, z: 0.000000}
-    scale: {x: 0.003312, y: 0.001639, z: 0.998150}
+    position: {x: 11.475224, y: 16.584408, z: -92.914276}
+    rotation: {x: 0.000000, y: -0.593561, z: 0.000000}
+    scale: {x: 0.003338, y: 0.001639, z: 1.000331}
     hasSegmentScaleCompensation: false
   Children:
     - !<own> d5b3c7dd-0594-4975-8982-6c29e6f9c4cb
@@ -12316,10 +12321,7 @@
     scale: {x: 1.009928, y: 1.000000, z: 1.000000}
     hasSegmentScaleCompensation: false
   Children:
-    - !<own> a004f2ad-9598-49d8-9cbc-b129d57319df
-    - !<own> 6d68f311-0691-4098-8c01-cd7405cf0204
-    - !<own> 0e8d2647-00a9-4a89-bcbc-76509ca42f69
-    - !<own> 8945ab65-bb3a-4c6d-93af-66e16a5b4d9b
+    []
   Components:
     - !<own> 05d0082c-1365-441d-b374-89097f44f79b
 - !<SceneObject/cf3bc4e4-ebc8-4bba-9fa6-b51856e9947d>

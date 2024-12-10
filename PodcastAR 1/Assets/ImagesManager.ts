@@ -20,16 +20,17 @@ export class ImagesManager extends BaseScriptComponent {
     
 
     onAwake() {
+        
         this.containerFrame1.sceneObject.enabled=false;
-        this.containerFrame2.sceneObject.enabled=false;
-        this.containerFrame3.sceneObject.enabled=false;
-        this.containerFrame4.sceneObject.enabled=false;
+//        this.containerFrame2.sceneObject.enabled=false;
+//        this.containerFrame3.sceneObject.enabled=false;
+//        this.containerFrame4.sceneObject.enabled=false;
 
 
         this.imagesMap.set(1, {isPresent:false, container:this.containerFrame1})
-        this.imagesMap.set(2, {isPresent:false, container:this.containerFrame2})
-        this.imagesMap.set(3, {isPresent:false, container:this.containerFrame3})
-        this.imagesMap.set(4, {isPresent:false, container:this.containerFrame4})
+//        this.imagesMap.set(2, {isPresent:false, container:this.containerFrame2})
+//        this.imagesMap.set(3, {isPresent:false, container:this.containerFrame3})
+//        this.imagesMap.set(4, {isPresent:false, container:this.containerFrame4})
 
         print("image manager running")
 
@@ -38,20 +39,21 @@ export class ImagesManager extends BaseScriptComponent {
     showScreenImage(reqLink: string, duration:number){
         //first find open slot
         print('in show screen image!!!!!!!!!!!')
-        let firstOpenKey = -1;
-        for(let key = 1; key <= 5; key++){
-            if (!this.imagesMap.get(key).isPresent){
-                print("key " + key +" open");
-                firstOpenKey = key;
-                break;
-            }
-        }
+        let firstOpenKey = 1;
+//        for(let key = 1; key <= 5; key++){
+//            if (!this.imagesMap.get(key).isPresent){
+//                print("key " + key +" open");
+//                firstOpenKey = key;
+//                break;
+//            }
+//        }
 
         let openContainer = this.imagesMap.get(firstOpenKey).container;
+        
         let originalPosition =  openContainer.getTransform().getLocalPosition();
         let originalRotation = openContainer.getTransform().getLocalRotation();
         let originalScale = openContainer.getTransform().getLocalScale();
-
+        openContainer.sceneObject.enabled=true;
         //set map to being used
         this.imagesMap.set(firstOpenKey, {isPresent:true, container:openContainer})
 
@@ -64,6 +66,7 @@ export class ImagesManager extends BaseScriptComponent {
         
         img.mainMaterial = img.mainMaterial.clone();
 
+        openContainer.sceneObject.enabled=true;
         //request and set image
         let httpRequest = RemoteServiceHttpRequest.create();
         httpRequest.url = reqLink;
@@ -74,7 +77,10 @@ export class ImagesManager extends BaseScriptComponent {
             this.remoteMediaModule.loadResourceAsImageTexture(
               textureResource,
               (texture) => {
+                 
                 img.mainPass.baseTex = texture;
+                
+                //now visible
               },
               (error) => {
                 print('Error loading image texture: ' + error);
@@ -82,9 +88,10 @@ export class ImagesManager extends BaseScriptComponent {
             );
           }
         });
+        
+        
 
-        //now visible
-        openContainer.sceneObject.enabled=true;
+        
 
 
         //set delayed descturcton/reset

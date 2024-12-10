@@ -54,7 +54,7 @@ var onListeningErrorHandler = function (eventErrorArgs) {
   );
 };
 
-
+//script.vmlModule.startListening(options);
 
 
 //VoiceML Callbacks
