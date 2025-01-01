@@ -66,7 +66,7 @@ export class ImagesManager extends BaseScriptComponent {
         
         img.mainMaterial = img.mainMaterial.clone();
 
-        openContainer.sceneObject.enabled=true;
+        
         //request and set image
         let httpRequest = RemoteServiceHttpRequest.create();
         httpRequest.url = reqLink;
@@ -79,7 +79,7 @@ export class ImagesManager extends BaseScriptComponent {
               (texture) => {
                  
                 img.mainPass.baseTex = texture;
-                
+                openContainer.sceneObject.enabled=true;
                 //now visible
               },
               (error) => {

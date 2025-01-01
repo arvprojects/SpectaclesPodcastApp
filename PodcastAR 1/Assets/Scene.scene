@@ -11,6 +11,7 @@
     - !<own> f202b307-33d0-4d44-bc4a-58fb1b9e1351
     - !<own> 1d79bd90-e8bc-46c8-ab66-c71d32f8c380
     - !<own> 9735ee19-32d5-4786-a793-c97d001367dc
+    - !<own> 4b4fc847-0867-44ce-b154-3132467f49e9
   layers: !<Layers/267ee9a7-aff2-4f9d-9a49-f71214747d03>
     userLayers:
       []
@@ -518,63 +519,6 @@
   Components:
     - !<own> 42abcfe5-f1ae-4588-8cfc-42d1f6d1eb9e
     - !<own> db5050f7-6095-42d3-a1b7-8ec7bac1f027
-- !<ScriptComponent/05d0082c-1365-441d-b374-89097f44f79b>
-  PrefabRemaps:
-    []
-  Name: ContainerFrame
-  Enabled: false
-  ScriptAsset: !<reference> 94ea82ba-1d42-4617-b71f-c92262f5960b
-  ScriptInputsDefault:
-    worldCursor: true
-    innerSize: true
-    border: true
-    constantPadding: true
-    allowScaling: true
-    autoScaleContent: true
-    isContentInteractable: true
-    allowTranslation: true
-    minimumSize: true
-    maximumSize: true
-    useBillboarding: true
-    xOnTranslate: true
-    xAlways: true
-    yOnTranslate: true
-    yAlways: true
-    useSnapping: true
-    itemSnapping: true
-    worldSnapping: true
-    isFollowing: true
-    showCloseButton: true
-  ScriptTypesDefault:
-    {}
-  ScriptInputs:
-    "":
-      worldCursor: !<MappingBased.CursorController> 00000000-0000-0000-0000-000000000000
-      autoShowHide: false
-      innerSize: !<Vec2> {x: 32.000000, y: 32.000000}
-      border: !<float> 4.000000
-      constantPadding: !<Vec2> {x: 0.000000, y: 0.000000}
-      allowScaling: true
-      autoScaleContent: true
-      isContentInteractable: false
-      allowTranslation: true
-      minimumSize: !<Vec2> {x: 10.000000, y: 10.000000}
-      maximumSize: !<Vec2> {x: 300.000000, y: 300.000000}
-      useBillboarding: false
-      xOnTranslate: false
-      xAlways: false
-      yOnTranslate: false
-      yAlways: false
-      useSnapping: false
-      itemSnapping: false
-      worldSnapping: false
-      showFollowButton: true
-      useFOVFollow: true
-      isFollowing: false
-      showCloseButton: true
-  ScriptTypes:
-    "":
-      {}
 - !<ScriptComponent/06ba1261-3a2b-4dde-af0a-10377f085a2f>
   PrefabRemaps:
     []
@@ -1075,12 +1019,12 @@
   PrefabRemaps:
     []
   Name: ContainerFrame3
-  Enabled: true
+  Enabled: false
   Layers: 1
   LocalTransform:
-    position: {x: 11.808671, y: -12.536865, z: 11.074160}
-    rotation: {x: 0.000000, y: -21.191113, z: 0.000000}
-    scale: {x: 0.004419, y: 0.004058, z: 1.000162}
+    position: {x: -51.437603, y: 30.624588, z: 0.000000}
+    rotation: {x: 0.000000, y: -0.000000, z: 0.000000}
+    scale: {x: 1.000000, y: 0.750000, z: 1.000000}
     hasSegmentScaleCompensation: false
   Children:
     - !<own> d7644982-79ff-417a-bb50-0e4bd36644fe
@@ -4002,8 +3946,8 @@
   Enabled: true
   Layers: 1
   LocalTransform:
-    position: {x: 0.200008, y: 0.491165, z: 65.000000}
-    rotation: {x: 0.000000, y: -0.000000, z: 0.000000}
+    position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
     scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     hasSegmentScaleCompensation: false
   Children:
@@ -4640,7 +4584,6 @@
     itemSnapping: true
     worldSnapping: true
     showFollowButton: true
-    useFOVFollow: true
     isFollowing: true
     showCloseButton: true
   ScriptTypesDefault:
@@ -4667,7 +4610,7 @@
       itemSnapping: false
       worldSnapping: false
       showFollowButton: false
-      useFOVFollow: false
+      useFOVFollow: true
       isFollowing: false
       showCloseButton: true
   ScriptTypes:
@@ -4741,6 +4684,21 @@
   ForceCompound: false
   Intangible: false
   ShowCollider: false
+- !<SceneObject/4b4fc847-0867-44ce-b154-3132467f49e9>
+  PrefabRemaps:
+    []
+  Name: menuVoiceController
+  Enabled: true
+  Layers: 1
+  LocalTransform:
+    position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    hasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> fe9cc2b4-8841-4f97-8b60-293f06731a62
 - !<ScreenTransform/4b9ef5bf-f9e9-4531-971e-de9db375e168>
   PrefabRemaps:
     []
@@ -7205,12 +7163,12 @@
   PrefabRemaps:
     []
   Name: ContainerFrame2
-  Enabled: true
+  Enabled: false
   Layers: 1
   LocalTransform:
-    position: {x: 67.824287, y: 4.231285, z: -314.280212}
-    rotation: {x: 0.000000, y: -16.703146, z: 0.000000}
-    scale: {x: 0.001715, y: 0.001518, z: 1.000418}
+    position: {x: 12.721840, y: 29.833687, z: 0.000000}
+    rotation: {x: 0.000000, y: -0.000000, z: 0.000000}
+    scale: {x: 0.500000, y: 0.750000, z: 1.000000}
     hasSegmentScaleCompensation: false
   Children:
     - !<own> 73cd7d7f-b17a-47c6-8086-cc7c6c0cbef9
@@ -7318,7 +7276,7 @@
   LocalTransform:
     position: {x: 0.000000, y: 0.000000, z: 0.000000}
     rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    scale: {x: 32.000000, y: 32.000000, z: 32.000000}
+    scale: {x: 30.000000, y: 1.000000, z: 1.000000}
     hasSegmentScaleCompensation: false
   Children:
     []
@@ -7428,7 +7386,7 @@
   Name: Image
   Enabled: true
   RenderOrder: 0
-  StretchMode: Fit
+  StretchMode: Fill
   VerticalAlignment: Center
   HorizontalAlignment: Center
   MeshShadowMode: None
@@ -8268,7 +8226,6 @@
     itemSnapping: true
     worldSnapping: true
     showFollowButton: true
-    useFOVFollow: true
     isFollowing: true
     showCloseButton: true
   ScriptTypesDefault:
@@ -8295,7 +8252,7 @@
       itemSnapping: false
       worldSnapping: false
       showFollowButton: false
-      useFOVFollow: false
+      useFOVFollow: true
       isFollowing: false
       showCloseButton: true
   ScriptTypes:
@@ -8651,12 +8608,12 @@
   PrefabRemaps:
     []
   Name: ContainerFrame4
-  Enabled: true
+  Enabled: false
   Layers: 1
   LocalTransform:
-    position: {x: 22.632961, y: -12.256332, z: 15.014479}
-    rotation: {x: -6.526161, y: -21.693327, z: 0.000000}
-    scale: {x: 0.046991, y: 0.039027, z: 1.000139}
+    position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    scale: {x: 1.000000, y: 0.750000, z: 1.000000}
     hasSegmentScaleCompensation: false
   Children:
     - !<own> e73ebaeb-a4db-45e3-a7df-4f8fc1da735a
@@ -8954,7 +8911,7 @@
   Name: Image
   Enabled: true
   RenderOrder: 0
-  StretchMode: Fit
+  StretchMode: Fill
   VerticalAlignment: Center
   HorizontalAlignment: Center
   MeshShadowMode: None
@@ -9047,7 +9004,7 @@
   Name: Image
   Enabled: true
   RenderOrder: 0
-  StretchMode: Fit
+  StretchMode: Fill
   VerticalAlignment: Center
   HorizontalAlignment: Center
   MeshShadowMode: None
@@ -9479,18 +9436,17 @@
   Enabled: true
   Layers: 1
   LocalTransform:
-    position: {x: 0.000000, y: 0.000000, z: 0.000000}
-    rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    position: {x: 2.462952, y: 0.000000, z: -253.069824}
+    rotation: {x: 0.000000, y: -0.000000, z: 0.000000}
     scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     hasSegmentScaleCompensation: false
   Children:
-    - !<own> cefbf2d0-7e22-42b7-967d-50cbbcd42d9e
     - !<own> ed46928d-23c6-4a13-9c9c-1aecaa3e4892
     - !<own> a527770b-9f24-4563-beba-e9a3f9bfaeda
-    - !<own> a004f2ad-9598-49d8-9cbc-b129d57319df
     - !<own> 6d68f311-0691-4098-8c01-cd7405cf0204
     - !<own> 0e8d2647-00a9-4a89-bcbc-76509ca42f69
     - !<own> 8945ab65-bb3a-4c6d-93af-66e16a5b4d9b
+    - !<own> a004f2ad-9598-49d8-9cbc-b129d57319df
   Components:
     []
 - !<ScriptComponent/98221e8e-1279-4b33-a8a3-e7e907a18de1>
@@ -9812,9 +9768,9 @@
   Enabled: true
   Layers: 1
   LocalTransform:
-    position: {x: 11.475224, y: 16.584408, z: -92.914276}
-    rotation: {x: 0.000000, y: -0.593561, z: 0.000000}
-    scale: {x: 0.003338, y: 0.001639, z: 1.000331}
+    position: {x: -50.963715, y: 29.534767, z: 2.305420}
+    rotation: {x: 0.000000, y: -0.000000, z: 0.000000}
+    scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     hasSegmentScaleCompensation: false
   Children:
     - !<own> d5b3c7dd-0594-4975-8982-6c29e6f9c4cb
@@ -10120,7 +10076,7 @@
   PrefabRemaps:
     []
   Name: OpenMenu
-  Enabled: true
+  Enabled: false
   Layers: 1
   LocalTransform:
     position: {x: -55.000000, y: 5.000000, z: 65.000000}
@@ -11587,7 +11543,7 @@
   Enabled: false
   Layers: 1
   LocalTransform:
-    position: {x: 52.313843, y: -8.666447, z: -60.000000}
+    position: {x: 1.716560, y: -8.666447, z: -84.837799}
     rotation: {x: 0.000000, y: -0.000000, z: 0.000000}
     scale: {x: 4.957653, y: 1.000000, z: 1.000000}
     hasSegmentScaleCompensation: false
@@ -12309,21 +12265,6 @@
   ScriptTypes:
     "":
       {}
-- !<SceneObject/cefbf2d0-7e22-42b7-967d-50cbbcd42d9e>
-  PrefabRemaps:
-    []
-  Name: PodcastContainers
-  Enabled: true
-  Layers: 1
-  LocalTransform:
-    position: {x: 22.640472, y: -21.936626, z: -10.207413}
-    rotation: {x: 0.000000, y: -28.513493, z: 0.000000}
-    scale: {x: 1.009928, y: 1.000000, z: 1.000000}
-    hasSegmentScaleCompensation: false
-  Children:
-    []
-  Components:
-    - !<own> 05d0082c-1365-441d-b374-89097f44f79b
 - !<SceneObject/cf3bc4e4-ebc8-4bba-9fa6-b51856e9947d>
   PrefabRemaps:
     []
@@ -12610,9 +12551,9 @@
   Enabled: true
   Layers: 1
   LocalTransform:
-    position: {x: -1180.542480, y: -471.575562, z: -19.067505}
-    rotation: {x: 3.894761, y: -3.984581, z: -0.554350}
-    scale: {x: 2.829574, y: 2.227633, z: 1.000000}
+    position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    rotation: {x: 0.000000, y: -0.000000, z: 0.000000}
+    scale: {x: 30.000000, y: 0.504456, z: 1.000000}
     hasSegmentScaleCompensation: false
   Children:
     []
@@ -12741,9 +12682,9 @@
   Enabled: true
   Layers: 1
   LocalTransform:
-    position: {x: -0.000002, y: -43.854034, z: 316.416779}
+    position: {x: -0.000002, y: 0.000000, z: 0.000000}
     rotation: {x: 0.000000, y: -0.000000, z: 0.000000}
-    scale: {x: 16.000000, y: 16.000000, z: 16.000000}
+    scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     hasSegmentScaleCompensation: false
   Children:
     []
@@ -13174,19 +13115,12 @@
     worldCursor: true
     border: true
     constantPadding: true
-    allowScaling: true
-    autoScaleContent: true
     isContentInteractable: true
     allowTranslation: true
     minimumSize: true
     maximumSize: true
     xAlways: true
     yAlways: true
-    useSnapping: true
-    itemSnapping: true
-    worldSnapping: true
-    showFollowButton: true
-    isFollowing: true
     showCloseButton: true
   ScriptTypesDefault:
     {}
@@ -13197,8 +13131,8 @@
       innerSize: !<Vec2> {x: 32.020000, y: 32.000000}
       border: !<float> 4.000000
       constantPadding: !<Vec2> {x: 0.000000, y: 0.000000}
-      allowScaling: true
-      autoScaleContent: true
+      allowScaling: false
+      autoScaleContent: false
       isContentInteractable: false
       allowTranslation: true
       minimumSize: !<Vec2> {x: 10.000000, y: 10.000000}
@@ -13208,12 +13142,12 @@
       xAlways: false
       yOnTranslate: true
       yAlways: false
-      useSnapping: false
-      itemSnapping: false
-      worldSnapping: false
-      showFollowButton: false
+      useSnapping: true
+      itemSnapping: true
+      worldSnapping: true
+      showFollowButton: true
       useFOVFollow: true
-      isFollowing: false
+      isFollowing: true
       showCloseButton: true
   ScriptTypes:
     "":
@@ -13765,7 +13699,7 @@
   LocalTransform:
     position: {x: 0.000000, y: 0.000000, z: 0.000000}
     rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    scale: {x: 32.000000, y: 32.000000, z: 32.000000}
+    scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     hasSegmentScaleCompensation: false
   Children:
     []
@@ -15172,7 +15106,7 @@
   Name: Image
   Enabled: true
   RenderOrder: 0
-  StretchMode: Fit
+  StretchMode: Fill
   VerticalAlignment: Center
   HorizontalAlignment: Center
   MeshShadowMode: None
@@ -15584,6 +15518,22 @@
     CapitilizationOverride: None
   DepthTest: false
   TwoSided: false
+- !<ScriptComponent/fe9cc2b4-8841-4f97-8b60-293f06731a62>
+  PrefabRemaps:
+    []
+  Name: menuVoiceController
+  Enabled: true
+  ScriptAsset: !<reference> a3b79c16-635d-438e-9f9a-f30f5cd56769
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      vmlModule: !<reference.VoiceMLModule> cbae2490-a66c-4bd8-a6df-32dbd8629110
+  ScriptTypes:
+    "":
+      {}
 - !<Canvas/feaa5843-61a0-4322-ac24-e34c17725232>
   PrefabRemaps:
     []
