@@ -70,7 +70,7 @@ const fs = require('fs');
   async function getSpotifyAuthCode() {
     console.log(`Please set the following URL as your redirect URI in the Spotify Developer Portal:\n${redirectUri}`);
     await waitForUserInput('Press Enter after you have updated the Spotify redirect URI.');
-
+    
     const scopes = 'user-read-playback-state user-modify-playback-state';
     const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}`;
 

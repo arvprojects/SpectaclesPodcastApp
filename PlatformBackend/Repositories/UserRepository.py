@@ -27,3 +27,7 @@ class UserRepository:
     @staticmethod
     def get_user_by_name(name):
         return User.query.filter_by(name=name).first()
+    
+    @staticmethod
+    def get_user_by_spectacles_id(spectacles_device_id):
+        return User.query.filter_by(spectacles_device_id=spectacles_device_id).first()

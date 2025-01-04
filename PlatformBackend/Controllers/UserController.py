@@ -34,6 +34,13 @@ def get_user_by_name(name):
         return user_schema.jsonify(user)
     return jsonify({'message': 'User not found'}), 404
 
+@user_bp.route('/users/device/<string:spectacles_device_id>', methods=['GET'])
+def get_user_by_device_id(spectacles_device_id):
+    user = UserService.get_user_by_spectacles_id(spectacles_device_id)
+    if user:
+        return user_schema.jsonify(user)
+    return jsonify({'message': 'User not found'}), 404
+
 @user_bp.route('/users/<string:id>', methods=['PUT'])
 def update_user(id):
     data = request.get_json()

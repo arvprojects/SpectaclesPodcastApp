@@ -18,6 +18,12 @@ class UserService:
     @staticmethod
     def get_user_by_name(name):
         return UserRepository.get_user_by_name(name)
+    
+    @staticmethod
+    def get_user_by_spectacles_id(spectacles_device_id):
+        return UserRepository.get_user_by_spectacles_id(spectacles_device_id)
+    
+
 
 
     @staticmethod
