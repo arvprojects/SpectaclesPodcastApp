@@ -14,7 +14,7 @@ def poll_playback(user_metadata, podcast_metadata,schedule_name):
 
     # Check if the playback timestamp matches any of the media timestamps
     from Services.MediaService import MediaService
-    MediaService.check_media_timestamps(playback_progress, podcast_metadata['media'])
+    MediaService.check_media_timestamps(playback_progress, podcast_metadata['media'], user_metadata)
 
     current_app.logger.info(f"Playback progress: {playback_progress}for schedule_name: {schedule_name}")
 
