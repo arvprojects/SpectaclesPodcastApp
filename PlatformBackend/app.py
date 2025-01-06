@@ -25,5 +25,5 @@ app.register_blueprint(captured_moment_bp)
 
 if __name__ == '__main__':
     with app.app_context():
-        # No need to call db.create_all() since tables are already created
+        # No need to call db.create_all() since tables are already created test
         app.run(debug=True)
