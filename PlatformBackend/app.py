@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from Models import db
 from Controllers.UserController import user_bp
 from Controllers.PodcastController import podcast_bp
@@ -12,6 +13,8 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)s: %(me
 
 app = Flask(__name__)
 app.config.from_object(Config)
+CORS(app)
+
 
 db.init_app(app)
 
