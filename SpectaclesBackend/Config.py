@@ -10,9 +10,10 @@ class Config:
     SPOTIFY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
 
     CELERY_CONFIG = {
-        'broker_url': os.getenv('CELERY_BROKER_URL', 'redis://localhost:6379/0'),
-        'result_backend': os.getenv('CELERY_RESULT_BACKEND', 'redis://localhost:6379/0'),
+        'broker_url': os.getenv('CELERY_BROKER_URL', ''),
+        'result_backend': os.getenv('CELERY_RESULT_BACKEND', ''),
         'task_ignore_result': True,
+        'redbeat_lock_key': None,
+        'redbeat_redis_url': os.getenv('REDBEAT_REDIS_URL', '')
     }
-
     

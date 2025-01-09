@@ -17,8 +17,8 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
 #add podcasts for authors 
     def get_podcasts(self, obj):
             if obj.is_author:
-                return PodcastSchema(many=True).dump(obj.podcasts)
+                return PodcastSchema(many=True).dump(obj.podcasts) #returns the podcasts of the author as a json
             return []
     
     def get_captured_moments(self, obj):
-        return CapturedMomentSchema(many=True).dump(obj.captured_moments)
+        return CapturedMomentSchema(many=True).dump(obj.captured_moments) #returns the captured moments of the user as a json

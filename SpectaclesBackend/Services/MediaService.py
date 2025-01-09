@@ -7,6 +7,7 @@ from Services.task import poll_playback
 from redbeat import RedBeatSchedulerEntry
 from redbeat.schedules import rrule
 from datetime import datetime
+
 import json
 class MediaService:
     @staticmethod
@@ -33,6 +34,12 @@ class MediaService:
                                       app=celery_app)
         entry.save()
     
+    #when an auth token is updated, we need to stop the current schedule and resubmit it wiht the updated token
+    def reset_schedule(spectacles_device_id,podcast_metadata):
+        current_app.logger.info(f"Resetting schedule for device ID: {spectacles_device_id}")
+        MediaService.stop_polling(spectacles_device_id)
+        user_metadata = PlatformBackendService.get_user_metadata_by_spectacles(spectacles_device_id)
+        MediaService.start_polling(user_metadata, podcast_metadata)
 
     @staticmethod
     def stop_polling(spectacles_device_id):
@@ -49,9 +56,60 @@ class MediaService:
     
 
     @staticmethod
-    def check_media_timestamps(playback_timestamp, media_list):
+    def check_media_timestamps(playback_timestamp, media_list,spectacles_device_id):
+        from Controllers.MediaController import send_message_to_user
+    
         for media in media_list:
             if abs(media['start_timestamp'] - playback_timestamp) <= 2500:
                 current_app.logger.info(f"Media start match found: {media['storage_url']}")
+                send_message_to_user(spectacles_device_id, f"Media start: {media['storage_url']}")
+
             elif abs(media['end_timestamp'] - playback_timestamp) <= 2500:
                 current_app.logger.info(f"Media end match found: {media['storage_url']}")
+                send_message_to_user(spectacles_device_id, f"Media end: {media['storage_url']}")
+
+
+    # @staticmethod
+    # def check_media_timestamps(playback_timestamp, media_list, device_id):
+    #     for media in media_list:
+    #         if abs(media['start_timestamp'] - playback_timestamp) <= 2500:
+    #             current_app.logger.info(f"Media start match found: {media['storage_url']}")
+    #             # Publish start message to the message broker
+    #             MediaService.publish_to_broker(
+    #                 device_id,
+    #                 {
+    #                     "MediaId": media['id'],  # Unique identifier for the media
+    #                     "mediaUrl": media['storage_url'],  # URL to media storage or webview
+    #                     "activate": True
+    #                 }
+    #             )
+    #         elif abs(media['end_timestamp'] - playback_timestamp) <= 2500:
+    #             current_app.logger.info(f"Media end match found: {media['storage_url']}")
+    #             # Publish stop message to the message broker
+    #             MediaService.publish_to_broker(
+    #                 device_id,
+    #                 {
+    #                     "MediaId": media['id'],  # Unique identifier for the media
+    #                     "activate": False
+    #                 }
+    #             )
+
+    # @staticmethod
+    # def publish_to_broker(spectacles_device_id, payload):
+    #     broker_url = "a1smxj2i6r5ldy-ats.iot.us-east-2.amazonaws.com"  # Replace with your MQTT broker URL
+    #     topic = f"spectacles/{spectacles_device_id}/media"
+
+    #     client = mqtt.Client()
+    #     current_app.logger.info("Publish to broker is being called")
+    #     # Optional: Add authentication or TLS if required
+    #     # client.username_pw_set(username="your-username", password="your-password")
+    #     # client.tls_set("path_to_ca_cert.pem")
+
+    #     current_app.logger.info(f"this is the payload {payload}")
+    #     current_app.logger.info(f"this is the topic {topic}")
+    #     client.connect(broker_url, 1883, 60)  # Port 1883 for unencrypted MQTT
+        
+    #     client.publish(topic, json.dumps(payload))
+    #     current_app.logger.info(f"Published to topic {topic}: {payload}")
+        
+    #     client.disconnect()

@@ -14,4 +14,4 @@ class PodcastSchema(ma.SQLAlchemyAutoSchema):
 
 #add podcasts for authors 
     def get_media(self, obj):
-        return MediaSchema(many=True).dump(obj.media)
+        return MediaSchema(many=True).dump(obj.media) #returns the media of the podcast as a json
