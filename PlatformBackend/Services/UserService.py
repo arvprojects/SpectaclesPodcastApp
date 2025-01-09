@@ -1,9 +1,16 @@
 from Models.User import User
 from Repositories.UserRepository import UserRepository
 from flask import current_app as app
+import json
+from Schemas.UserSchema import UserSchema
+
+user_schema = UserSchema()
 class UserService:
     @staticmethod
     def create_user(user_instance):
+        app.logger.info(user_instance)
+
+        user_instance=user_schema.load(user_instance)
         UserRepository.add_user(user_instance)
         return user_instance
 
@@ -30,15 +37,20 @@ class UserService:
     def update_user(id, user_instance):
         user = UserRepository.get_user_by_id(id)
         if user:
-            user.name = user_instance.name
-            user.spectacles_device_id = user_instance.spectacles_device_id
-            user.snapchat_username = user_instance.snapchat_username
-            user.spotify_auth_code = user_instance.spotify_auth_code
-            user.spotify_refresh_token = user_instance.spotify_refresh_token
-            user.is_author = user_instance.is_author
-            UserRepository.update_user(user)
-            return user
-        return None
+            # Remove created_at and updated_at from user_instance before updating
+
+            user.name = user_instance['name']
+            user.spectacles_device_id = user_instance['spectacles_device_id']
+            user.snapchat_username = user_instance['snapchat_username']
+            user.spotify_auth_code = user_instance['spotify_auth_code']
+            user.spotify_refresh_token = user_instance['spotify_refresh_token']
+            user.is_author = user_instance['is_author']
+        
+        #user is a json remove the created at and updated at fields
+        user_instance=user_schema.load(user_instance)
+
+        UserRepository.update_user(user)
+        return user
 
     @staticmethod
     def delete_user(user_id):
@@ -47,3 +59,44 @@ class UserService:
             UserRepository.delete_user(user)
             return True
         return False
+    
+
+    @staticmethod
+    def fill_credentials(user_instance):
+        app.logger.info(f"This is user_instance {user_instance}")
+        
+        # # Ensure spectacles_device_id exists
+        # if not user_instance['spectacles_device_id']:
+        #     raise ValueError("Spectacles device ID is required for provisioning.")
+
+        # # AWS IoT Setup
+        # iot_client = boto3.client("iot", region_name="us-east-2")  # Replace with your AWS region
+        # app.logger.info('Its getting here')
+        # iot_endpoint = "a1smxj2i6r5ldy-ats.iot.us-east-2.amazonaws.com"  # Replace with your IoT endpoint
+
+        # # Provision IoT Thing
+        # thing_name = f"Spectacle-{user_instance['spectacles_device_id']}"
+        # cert_response = iot_client.create_keys_and_certificate(setAsActive=True)
+        # certificate_arn = cert_response["certificateArn"]
+        # certificate_pem = cert_response["certificatePem"]
+        # private_key = cert_response["keyPair"]["PrivateKey"]
+
+        # # Attach Policy
+        # iot_client.attach_policy(
+        #     policyName="SpectaclesPolicy", target=certificate_arn
+        # )
+
+        # # Attach Certificate to Thing
+        # iot_client.create_thing(thingName=thing_name)
+        # iot_client.attach_thing_principal(
+        #     thingName=thing_name, principal=certificate_arn
+        # )
+
+        # # Populate the user_instance with IoT credentials
+        # user_instance['thing_name'] = thing_name
+        # user_instance['certificate_arn'] = certificate_arn
+        # user_instance['certificate_pem'] = certificate_pem
+        # user_instance['private_key'] = private_key
+        # user_instance['iot_endpoint'] = iot_endpoint
+
+        return user_instance

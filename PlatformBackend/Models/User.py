@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 import uuid
 from Models import db
-
+from datetime import datetime
 class User(db.Model):
     __tablename__ = 'user_table'
     
@@ -13,13 +13,26 @@ class User(db.Model):
     spotify_refresh_token = db.Column(db.String(255))
     is_author = db.Column(db.Boolean, default=False)
 
+
+    # thing_name = db.Column(db.String(255))
+    # certificate_arn = db.Column(db.String(255))
+    # certificate_pem = db.Column(db.Text)
+    # private_key = db.Column(db.Text)
+    # iot_endpoint = db.Column(db.String(255))
+    # created_at = db.Column(db.DateTime, default=datetime.now)
+    # updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
+
+    
+
     def __repr__(self):
         return f'<User {self.name}>'
     
-    def __init__(self, spectacles_device_id, snapchat_username, name, spotify_auth_code, spotify_refresh_token, is_author=False):
+    def __init__(self, spectacles_device_id, snapchat_username, name, spotify_auth_code, 
+                 spotify_refresh_token, is_author=False):
         self.spectacles_device_id = spectacles_device_id
         self.snapchat_username = snapchat_username
         self.name = name
         self.spotify_auth_code = spotify_auth_code
         self.spotify_refresh_token = spotify_refresh_token
         self.is_author = is_author
+        
