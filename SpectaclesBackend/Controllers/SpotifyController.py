@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify,current_app
 from Services.SpotifyService import SpotifyService
-
 spotify_controller_bp = Blueprint('spotify_controller', __name__)
 
 @spotify_controller_bp.route('/playback', methods=['GET'])

@@ -13,21 +13,6 @@ def create_app():
     # Load configuration
     app.config.from_object(Config.Config)
 
-    # app.config.from_mapping(
-    #     CELERY=dict(
-    #         broker_url="redis://localhost/6379/0",
-    #         result_backend="redis://localhost/6739/0",
-    #         task_ignore_result=True,
-    #     ),
-    # )
-
-    # app.config["CELERY_CONFIG"] = {
-    #     'broker_url': 'redis://localhost:6379/0',
-    #     'result_backend':  'redis://localhost:6379/0',
-    #     'task_ignore_result': True,
-    #     'redbeat_lock_key' :None,
-    #     'redbeat_redis_url' : 'redis://localhost:6379/1'
-    # }
     socketio.init_app(app)
 
     celery = make_celery(app)

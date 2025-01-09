@@ -46,7 +46,7 @@ def send_message_to_user(spectacles_device_id, message):
         'spectacles_device_id': spectacles_device_id,
         'message': message
     }
-    response = requests.post('http://localhost:5001/sendMessage', json=data)
+    response = requests.post('http://3.129.194.83:5000/sendMessage', json=data)
     return 'Triggered', 200
 
 #use socket io to send message to user

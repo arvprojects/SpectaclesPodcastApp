@@ -11,8 +11,8 @@ class SpotifyService:
         # Fetch the user object using the spectaclesDeviceId
         current_app.logger.info(f'Fetching user data for spectacles device id: {spectacles_device_id}')
         platform_url = current_app.config['PLATFORM_BACKEND_URL']
-        
-        response = requests.get(f'{platform_url}/users/device/{spectacles_device_id}')
+        url = f'{platform_url}/users/device/{spectacles_device_id}'
+        response = requests.get(url)
         user_data = response.json()
         return user_data.get('spotify_auth_code'), user_data.get('spotify_refresh_token'), user_data.get('id')
     
