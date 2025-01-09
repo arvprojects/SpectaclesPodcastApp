@@ -9,8 +9,7 @@ users_schema = UserSchema(many=True)
 @user_bp.route('/users', methods=['POST'])
 def add_user():
     data = request.get_json()
-    # user_data = user_schema.load(data)
-    # app.logger.info(user_schema.jsonify(user_data))
+    
     user = UserService.create_user(data)
     
     return user_schema.jsonify(user), 201
@@ -46,8 +45,8 @@ def get_user_by_device_id(spectacles_device_id):
 @user_bp.route('/users/<string:id>', methods=['PUT'])
 def update_user(id):
     data = request.get_json()
-    
-    user = UserService.update_user(id,data)
+    user_data = user_schema.load(data, partial=True)
+    user = UserService.update_user(id,user_data)
     if user:
         return user_schema.jsonify(user)
     return jsonify({'message': 'User not found'}), 404
