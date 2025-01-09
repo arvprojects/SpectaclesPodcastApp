@@ -9,8 +9,9 @@ users_schema = UserSchema(many=True)
 @user_bp.route('/users', methods=['POST'])
 def add_user():
     data = request.get_json()
-    # user_data = user_schema.load(data)
+    
     user = UserService.create_user(data)
+    
     return user_schema.jsonify(user), 201
 
 @user_bp.route('/users', methods=['GET'])

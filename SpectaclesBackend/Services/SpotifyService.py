@@ -31,9 +31,8 @@ class SpotifyService:
         user_data.pop('captured_moments')
         user_data.pop('id')
 
-        
-
-        current_app.logger.info(f'User data: {user_data}')
+    
+        # current_app.logger.info(f'User data: {user_data}')
         response = requests.put(f'{platform_url}/users/{user_id}', json=user_data)
 
 
@@ -84,6 +83,7 @@ class SpotifyService:
     def get_playback(spectacles_device_id):
         auth_token, refresh_token, user_id = SpotifyService.get_user_auth_token(spectacles_device_id)
         response = requests.get(SpotifyService.base_url, headers={'Authorization': f'Bearer {auth_token}'})
+        current_app.logger.info(response)
         if response.status_code == 401:
             current_app.logger.info('Access token expired, refreshing token...')
             new_auth_token = SpotifyService.refresh_token(refresh_token)
@@ -94,17 +94,22 @@ class SpotifyService:
     
     @staticmethod
     def get_playback_progress_with_token(auth_token, refresh_token, user_id, spectacles_device_id):
+        refreshed = False
         response = requests.get(SpotifyService.base_url, headers={'Authorization': f'Bearer {auth_token}'})
+        current_app.logger.info(response)
         if response.status_code == 401:
+            refreshed = True
             current_app.logger.info('Access token expired, refreshing token...')
             new_auth_token = SpotifyService.refresh_token(refresh_token)
             if new_auth_token:
                 SpotifyService.update_user_auth_token(user_id, new_auth_token)
                 response = requests.get(SpotifyService.base_url, headers={'Authorization': f'Bearer {new_auth_token}'})
-        return response.json()["progress_ms"]
+        return response.json()["progress_ms"],refreshed
         
     #UNLESS THE USER CAN SEND THEIR AUTH TOKEN WITH EVERY REQUEST WE NEED TO GET THE 
-    # AUTH TOKEN FROM THE DB EVERYTIME WE DO A PLAY/PAUSE/SEEK. not the end of the world for now    
+    # AUTH TOKEN FROM THE DB EVERYTIME WE DO A PLAY/PAUSE/SEEK. not the end of the world for now.
+    # shoudl be simple if when we establish a websocket connection we send them the auth token? But what happens on 
+    # an update of the token    
     @staticmethod
     def play(spectacles_device_id):
         auth_token, refresh_token, user_id = SpotifyService.get_user_auth_token(spectacles_device_id)
