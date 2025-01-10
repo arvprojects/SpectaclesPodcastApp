@@ -3,13 +3,14 @@ from Controllers.SpotifyController import spotify_controller_bp
 from Controllers.MediaController import media_controller_bp
 import logging
 import Config
+from flask_cors import CORS
 from celery import Celery,Task
 from utils import make_celery
 from Controllers.socketio_instance import socketio
 
 def create_app():
     app = Flask(__name__)
-    
+    CORS(app)
     # Load configuration
     app.config.from_object(Config.Config)
 
