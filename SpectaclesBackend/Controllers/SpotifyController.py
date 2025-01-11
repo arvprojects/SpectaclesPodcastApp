@@ -35,3 +35,11 @@ def seek_backward():
     milliseconds = int(request.args.get('milliseconds', 10000))  # Default to 10 seconds
     status_code = SpotifyService.seek_backward(spectacles_user_id, milliseconds)
     return ('', status_code)
+
+@spotify_controller_bp.route('/login', methods=['GET'])
+def login():
+    spectacles_user_id = request.args.get('state')
+    authorization_code = request.args.get('code')
+    current_app.logger.info(f"Logging in user with state: {spectacles_user_id} and code: {authorization_code}")
+    status_code = SpotifyService.login(spectacles_user_id, authorization_code)
+    return ('', status_code)

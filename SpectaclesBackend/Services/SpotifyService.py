@@ -106,6 +106,49 @@ class SpotifyService:
                 response = requests.get(SpotifyService.base_url, headers={'Authorization': f'Bearer {new_auth_token}'})
         return response.json()["progress_ms"],refreshed
         
+
+    @staticmethod
+    def login(spectacles_device_id, authorization_code):
+        # Load client credentials from environment variables
+        client_id = current_app.config['SPOTIFY_CLIENT_ID']
+        client_secret = current_app.config['SPOTIFY_CLIENT_SECRET']
+        if not client_id or not client_secret:
+            raise ValueError("Client ID or Client Secret is not set in the environment variables.")
+        
+        # Prepare the request to exchange the authorization code for tokens
+        token_url = "https://accounts.spotify.com/api/token"
+        payload = {
+            "grant_type": "authorization_code",
+            "code": authorization_code,
+            "redirect_uri": "http://3.136.225.244:5000/spotify/login"
+        }
+        headers = {
+            "Authorization": f"Basic {b64encode(f'{client_id}:{client_secret}'.encode()).decode()}",
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+        
+        # Request tokens from Spotify
+        response = requests.post(token_url, data=payload, headers=headers)
+        response.raise_for_status()  # Raise an error for unsuccessful responses
+        token_data = response.json()
+        
+        # Extract access and refresh tokens
+        access_token = token_data.get('access_token')
+        refresh_token = token_data.get('refresh_token')
+        if not access_token or not refresh_token:
+            raise ValueError("Failed to retrieve tokens from Spotify.")
+        
+        url = f"{os.getenv('PLATFORM_BACKEND_URL')}/users/device/{spectacles_device_id}"
+        response = requests.get(url)
+        data = response.json()
+        data["spotify_auth_code"] = access_token
+        data["spotify_refresh_token"] = refresh_token
+
+        url = f"{current_app.config['PLATFORM_BACKEND_URL']}/users/{data['id']}"
+
+        response = requests.put(url, json=data)
+  
+        return response.status_code
     #UNLESS THE USER CAN SEND THEIR AUTH TOKEN WITH EVERY REQUEST WE NEED TO GET THE 
     # AUTH TOKEN FROM THE DB EVERYTIME WE DO A PLAY/PAUSE/SEEK. not the end of the world for now.
     # shoudl be simple if when we establish a websocket connection we send them the auth token? But what happens on 
