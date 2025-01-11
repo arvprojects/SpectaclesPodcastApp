@@ -141,9 +141,10 @@ class SpotifyService:
         url = f"{current_app.config['PLATFORM_BACKEND_URL']}/users/device/{spectacles_device_id}"
         response = requests.get(url)
         data = response.json()
+        current_app.logger.info(data)
         data["spotify_auth_code"] = access_token
         data["spotify_refresh_token"] = refresh_token
-
+        current_app.logger.info(access_token+" "+refresh_token)
         url = f"{current_app.config['PLATFORM_BACKEND_URL']}/users/{data['id']}"
 
         response = requests.put(url, json=data)
