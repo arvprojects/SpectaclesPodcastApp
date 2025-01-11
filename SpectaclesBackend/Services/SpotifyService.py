@@ -140,8 +140,9 @@ class SpotifyService:
         
         url = f"{current_app.config['PLATFORM_BACKEND_URL']}/users/device/{spectacles_device_id}"
         response = requests.get(url)
-        newdata = response.json()
+        data = response.json()
         current_app.logger.info(data)
+        newdata=data
         newdata["spotify_auth_code"] = access_token
         newdata["spotify_refresh_token"] = refresh_token
         current_app.logger.info("spotify access "+ access_token+" "+refresh_token)
@@ -153,8 +154,8 @@ class SpotifyService:
 
         url = f"{current_app.config['PLATFORM_BACKEND_URL']}/users/device/{spectacles_device_id}"
         response = requests.get(url)
-        data = response.json()
-        current_app.logger.info(data)
+        testget = response.json()
+        current_app.logger.info(testget)
   
         return response.status_code
     #UNLESS THE USER CAN SEND THEIR AUTH TOKEN WITH EVERY REQUEST WE NEED TO GET THE 
