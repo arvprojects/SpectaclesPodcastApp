@@ -147,6 +147,8 @@ class SpotifyService:
         newdata["spotify_refresh_token"] = refresh_token
         userid = data['id']
         newdata.pop('id',None)
+        newdata.pop('podcasts',None)
+        newdata.pop('captured_moments',None)
         current_app.logger.info(newdata)
         current_app.logger.info("id = "+str(userid))
         current_app.logger.info("spotify access "+ access_token+" "+refresh_token)
