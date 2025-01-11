@@ -145,10 +145,10 @@ class SpotifyService:
         newdata=data
         newdata["spotify_auth_code"] = access_token
         newdata["spotify_refresh_token"] = refresh_token
+        newdata.pop('id',None)
         current_app.logger.info("spotify access "+ access_token+" "+refresh_token)
         url = f"{current_app.config['PLATFORM_BACKEND_URL']}/users/{data['id']}"
         response = requests.put(url, json=newdata)
-        current_app.logger.info(newdata)
         
 
 
