@@ -138,7 +138,7 @@ class SpotifyService:
         if not access_token or not refresh_token:
             raise ValueError("Failed to retrieve tokens from Spotify.")
         
-        url = f"{os.getenv('PLATFORM_BACKEND_URL')}/users/device/{spectacles_device_id}"
+        url = f"{current_app.config['PLATFORM_BACKEND_URL']}/users/device/{spectacles_device_id}"
         response = requests.get(url)
         data = response.json()
         data["spotify_auth_code"] = access_token
