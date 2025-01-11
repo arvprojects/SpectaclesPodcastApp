@@ -149,18 +149,10 @@ class SpotifyService:
         newdata.pop('id',None)
         newdata.pop('podcasts',None)
         newdata.pop('captured_moments',None)
-        current_app.logger.info(newdata)
-        current_app.logger.info("id = "+str(userid))
-        current_app.logger.info("spotify access "+ access_token+" "+refresh_token)
+     
         url = f"{current_app.config['PLATFORM_BACKEND_URL']}/users/{userid}"
         response = requests.put(url, json=newdata)
-        
-
-
-        url = f"{current_app.config['PLATFORM_BACKEND_URL']}/users/device/{spectacles_device_id}"
-        response = requests.get(url)
-        testget = response.json()
-        current_app.logger.info(testget)
+    
   
         return response.status_code
     #UNLESS THE USER CAN SEND THEIR AUTH TOKEN WITH EVERY REQUEST WE NEED TO GET THE 
