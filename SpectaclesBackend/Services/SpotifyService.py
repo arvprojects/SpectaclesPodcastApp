@@ -148,8 +148,8 @@ class SpotifyService:
         current_app.logger.info("spotify access "+ access_token+" "+refresh_token)
         url = f"{current_app.config['PLATFORM_BACKEND_URL']}/users/{data['id']}"
         response = requests.put(url, json=newdata)
-        current_app.logger.info("newdata "+newdata)
-        current_app.logger.info(response)
+        current_app.logger.info(newdata)
+        
 
 
         url = f"{current_app.config['PLATFORM_BACKEND_URL']}/users/device/{spectacles_device_id}"
