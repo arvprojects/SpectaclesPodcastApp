@@ -62,11 +62,21 @@ class MediaService:
         for media in media_list:
             if abs(media['start_timestamp'] - playback_timestamp) <= 2500:
                 current_app.logger.info(f"Media start match found: {media['storage_url']}")
-                send_message_to_user(spectacles_device_id, f"Media start: {media['storage_url']}")
+                message = {
+                "id": media['id'],
+                "storage_url": media['storage_url'],
+                "start": True
+            }
+                send_message_to_user(spectacles_device_id, message)
 
             elif abs(media['end_timestamp'] - playback_timestamp) <= 2500:
                 current_app.logger.info(f"Media end match found: {media['storage_url']}")
-                send_message_to_user(spectacles_device_id, f"Media end: {media['storage_url']}")
+                message = {
+                "id": media['id'],
+                "storage_url": media['storage_url'],
+                "start": False
+            }
+                send_message_to_user(spectacles_device_id, message)
 
 
     # @staticmethod

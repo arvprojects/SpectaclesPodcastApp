@@ -7,7 +7,7 @@ from flask_sockets import Sockets
 import json
 media_controller_bp = Blueprint('media_controller', __name__)
 media_service = MediaService()
-
+active_connections = {}
 
 @media_controller_bp.route('/trigger', methods=['POST'])
 def trigger():
@@ -19,28 +19,31 @@ def trigger():
 
 @media_controller_bp.route('/sendMessage', methods=['POST'])
 def sendMessage():
-    
     data = request.json
-    
-    socketio.emit('message', {'data': data['message']}, room=data['spectacles_device_id'])
+    spectacles_device_id = data['spectacles_device_id']
+    message = data['message']
+    if spectacles_device_id in active_connections:
+        ws = active_connections[spectacles_device_id]
+        ws.send(json.dumps(message))
+        return 'message sent', 200
+    else:
+         return 'user not connected',404
 
-    return 'Triggered', 200
+# @socketio.on('connect')
+# def handle_connect():
+#         username = request.args.get('spectacles_device_id')
+#         current_app.logger.info(f"User {username} connected")
+#         if username:
+#             join_room(username)
+#             current_app.logger.info(f"User {username} connected")
+#             socketio.emit('message', {'data': 'Connected'}, room=username)
 
-@socketio.on('connect')
-def handle_connect():
-        username = request.args.get('spectacles_device_id')
-        current_app.logger.info(f"User {username} connected")
-        if username:
-            join_room(username)
-            current_app.logger.info(f"User {username} connected")
-            socketio.emit('message', {'data': 'Connected'}, room=username)
-
-@socketio.on('disconnect')
-def handle_disconnect():
-        username = request.args.get('spectacles_device_id')
-        leave_room(username)
+# @socketio.on('disconnect')
+# def handle_disconnect():
+#         username = request.args.get('spectacles_device_id')
+#         leave_room(username)
         
-        current_app.logger.info(f"User {username} disconnected")
+#         current_app.logger.info(f"User {username} disconnected")
 
 def send_message_to_user(spectacles_device_id, message):
     #make a post request to the sendMessage endpoint
@@ -48,7 +51,7 @@ def send_message_to_user(spectacles_device_id, message):
         'spectacles_device_id': spectacles_device_id,
         'message': message
     }
-    response = requests.post('http://3.129.194.83:5000/sendMessage', json=data)
+    response = requests.post(f"{current_app.config['SPECTACLES_BACKEND_URL']}/sendMessage", json=data)
     return 'Triggered', 200
 
 #use socket io to send message to user
@@ -68,5 +71,10 @@ def init_sockets(sock):
             username = data.get('spectacles_device_id')
             current_app.logger.info(f"User {username} connected")
             if username:
+                active_connections[username] = ws
                 ws.send(json.dumps({'data': 'Connected'}))
                 # Handle other messages here
+        # Remove the connection when it is closed
+        if username in active_connections:
+            del active_connections[username]
+            current_app.logger.info(f"User {username} disconnected")
