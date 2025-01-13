@@ -3,6 +3,8 @@ from Services.MediaService import MediaService
 from flask_socketio import SocketIO,emit, join_room, leave_room
 from Controllers.socketio_instance import socketio
 import requests
+from flask_sockets import Sockets
+import json
 media_controller_bp = Blueprint('media_controller', __name__)
 media_service = MediaService()
 
@@ -53,3 +55,18 @@ def send_message_to_user(spectacles_device_id, message):
 # def send_message_to_user(spectacles_device_id, message):
 #     socketio.emit('message', {'data': message}, room=spectacles_device_id)
 #     return 'Triggered', 200
+
+
+def init_sockets(sock):
+    @sock.route('/ws')
+    def handle_websocket(ws):
+        while True:
+            message = ws.receive()
+            if message is None:
+                break
+            data = json.loads(message)
+            username = data.get('spectacles_device_id')
+            current_app.logger.info(f"User {username} connected")
+            if username:
+                ws.send(json.dumps({'data': 'Connected'}))
+                # Handle other messages here

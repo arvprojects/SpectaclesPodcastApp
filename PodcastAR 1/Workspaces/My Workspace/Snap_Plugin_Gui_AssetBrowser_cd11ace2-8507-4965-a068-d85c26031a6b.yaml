@@ -1,7 +1,7 @@
 CollapsedEntities:
   type: stringset
   value:
-    size: 1248
+    size: 1254
     values:
       - 9179599.png
       - ApplicationRepository.ts
@@ -37,10 +37,13 @@ CollapsedEntities:
       - Render Target.renderTarget
       - Scene.scene
       - Script.js
+      - SpectaclesInteractionKit
+      - SpectaclesInteractionKit/Assets
       - SpectaclesInteractionKit/Assets/Audio
       - SpectaclesInteractionKit/Assets/Audio/HoverAudioTrack.wav
       - SpectaclesInteractionKit/Assets/Audio/TriggerEndAudioTrack.wav
       - SpectaclesInteractionKit/Assets/Audio/TriggerStartAudioTrack.wav
+      - SpectaclesInteractionKit/Assets/Materials
       - SpectaclesInteractionKit/Assets/Materials/BaseHandVisualsMaterials
       - SpectaclesInteractionKit/Assets/Materials/BaseHandVisualsMaterials/PaintedGlow_Left.mat
       - SpectaclesInteractionKit/Assets/Materials/BaseHandVisualsMaterials/PaintedGlow_Right.mat
@@ -229,6 +232,7 @@ CollapsedEntities:
       - SpectaclesInteractionKit/Assets/Shaders/simple_pbr 8.ss_graph
       - SpectaclesInteractionKit/Assets/Shaders/simple_pbr 9.ss_graph
       - SpectaclesInteractionKit/Assets/Shaders/simple_pbr.ss_graph
+      - SpectaclesInteractionKit/Assets/Textures
       - SpectaclesInteractionKit/Assets/Textures/2DBitmojiAvatar.png
       - SpectaclesInteractionKit/Assets/Textures/Base.png
       - SpectaclesInteractionKit/Assets/Textures/BaseHandVisualsTextures
@@ -241,6 +245,7 @@ CollapsedEntities:
       - SpectaclesInteractionKit/Assets/Textures/Rectangle.png
       - SpectaclesInteractionKit/Assets/Textures/SIKLogo.png
       - SpectaclesInteractionKit/Assets/Textures/ScrollBarRectangle.png
+      - SpectaclesInteractionKit/Components
       - SpectaclesInteractionKit/Components/Helpers
       - SpectaclesInteractionKit/Components/Helpers/CapsuleMeshCustomizer.ts
       - SpectaclesInteractionKit/Components/Helpers/InteractableAudioFeedback.ts
@@ -381,6 +386,7 @@ CollapsedEntities:
       - SpectaclesInteractionKit/Components/UI/Slider/Slider.ts
       - SpectaclesInteractionKit/Components/UI/ToggleButton
       - SpectaclesInteractionKit/Components/UI/ToggleButton/ToggleButton.ts
+      - SpectaclesInteractionKit/Core
       - SpectaclesInteractionKit/Core/ConfigurationValidator
       - SpectaclesInteractionKit/Core/ConfigurationValidator/ConfigurationValidator.ts
       - SpectaclesInteractionKit/Core/HandInteractor

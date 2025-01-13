@@ -6,6 +6,8 @@ import Config
 from celery import Celery,Task
 from utils import make_celery
 from Controllers.socketio_instance import socketio
+from flask_sock import Sock
+from Controllers.MediaController import media_controller_bp, init_sockets
 
 def create_app():
     app = Flask(__name__)
@@ -13,7 +15,8 @@ def create_app():
     # Load configuration
     app.config.from_object(Config.Config)
 
-    socketio.init_app(app)
+    # socketio.init_app(app)
+    sock = Sock(app)
 
     celery = make_celery(app)
     celery.set_default()
@@ -26,15 +29,17 @@ def create_app():
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
     
-    
-    return app,celery
+    init_sockets(sock)
 
-app,celery= create_app()
+
+    return app,celery,sock
+
+app,celery,sock= create_app()
 # app.app_context().push())
 
 if __name__ == '__main__':
-    # app.run()
-    socketio.run(app)
+    app.run(host='0.0.0.0', port=5000)
+    # socketio.run(app,ssl_context=('path/to/cert.pem', 'path/to/key.pem'))
 
 
 
