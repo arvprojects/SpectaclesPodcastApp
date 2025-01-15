@@ -1,0 +1,13 @@
+- !<AssetCache/382323f6-a036-76a3-c7d6-65db472c1007>
+  AssetFiles:
+    f2ce530f-fa20-4482-9d27-0ee7ef3fb716: 2d15bc73-6d02-4705-b422-d4f70c1435c5/382323f6a03676a3c7d665db472c1007/Data/disabled.png
+  Assets:
+    - !<FileTexture/f2ce530f-fa20-4482-9d27-0ee7ef3fb716>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 128
+        Height: 128
+  SourceHash: 382323f6a03676a3c7d665db472c1007
+  FileHash: c447dd2235ad2e44f64f355334f04c49
+  NativePackageItems:
+    []
