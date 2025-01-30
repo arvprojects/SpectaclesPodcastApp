@@ -118,10 +118,21 @@ let SpectaclesBackendClient = class SpectaclesBackendClient extends BaseScriptCo
             method: "PUT",
         });
     }
+    async captureMoment() {
+        const response = await this.remoteServiceModule.fetch("https://arvprojects.com/trigger", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "spectacles_device_id": this.username,
+                "podcast_id": this.currentPodcastId,
+            }),
+        });
+    }
     __initialize() {
         super.__initialize();
         this.containers = new Map();
-        this.username = "vern416";
         this.remoteMediaModule = require('LensStudio:RemoteMediaModule');
     }
 };

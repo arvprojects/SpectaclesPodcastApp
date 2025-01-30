@@ -1,7 +1,7 @@
 CollapsedEntities:
   type: stringset
   value:
-    size: 600
+    size: 597
     values:
       - Device Camera Texture.deviceCameraTexture
       - Echopark.hdr
@@ -15,7 +15,9 @@ CollapsedEntities:
       - Render Target.renderTarget
       - Scene.scene
       - Scripts/HandFollower.ts
+      - Scripts/Helper
       - Scripts/Helper/WebSocketHelper.ts
+      - Scripts/MenuHandler.ts
       - Scripts/PlatformBackendClient.ts
       - Scripts/PodcastListGenerator.ts
       - Scripts/SpectaclesBackendClient.ts
@@ -344,8 +346,6 @@ CollapsedEntities:
       - SpectaclesInteractionKit/Core/MouseInteractor/MouseInteractor.ts
       - SpectaclesInteractionKit/Decorators
       - SpectaclesInteractionKit/Decorators/Singleton.ts
-      - SpectaclesInteractionKit/Examples
-      - SpectaclesInteractionKit/Examples/RocketWorkshop
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Materials
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Materials/Icons
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Materials/Icons/ModernBodyTube_icon.mat
@@ -418,7 +418,6 @@ CollapsedEntities:
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Meshes/SIK_Rockets.fbx/Meshes/Satellite2
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Meshes/SIK_Rockets.fbx/Meshes/Satellite3
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Meshes/SIK_Rockets.fbx/SIK_Rockets
-      - SpectaclesInteractionKit/Examples/RocketWorkshop/Prefabs
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Prefabs/Parts
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Prefabs/Parts/Modern Body Tube.prefab
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Prefabs/Parts/Modern Fins.prefab
@@ -442,7 +441,6 @@ CollapsedEntities:
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Prefabs/ScrollViewListItems/Space Age Body Tube.prefab
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Prefabs/ScrollViewListItems/Space Age Fins.prefab
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Prefabs/ScrollViewListItems/Space Age Nose Cone.prefab
-      - SpectaclesInteractionKit/Examples/RocketWorkshop/Scripts
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Scripts/ExhaustControls.ts
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Scripts/RocketConfigurator.ts
       - SpectaclesInteractionKit/Examples/RocketWorkshop/Scripts/RocketGridContentCreator.ts
@@ -513,7 +511,6 @@ CollapsedEntities:
       - SpectaclesInteractionKit/Examples/RocketWorkshop/VFX/Rocket Sparks/Top_Rocket_Trail.ss_graph
       - SpectaclesInteractionKit/Examples/RocketWorkshop/VFX/Rocket Sparks/stripe_noise 2.png
       - SpectaclesInteractionKit/Examples/SIK Examples.prefab
-      - SpectaclesInteractionKit/Prefabs
       - SpectaclesInteractionKit/Prefabs/SpectaclesInteractionKit.prefab
       - SpectaclesInteractionKit/Providers
       - SpectaclesInteractionKit/Providers/CameraProvider

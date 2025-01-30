@@ -84,9 +84,8 @@ export class GridContentCreator extends BaseScriptComponent {
     onStateChangedCallback = (podcast) => {
       this.containerFrame.sceneObject.enabled=false;
 
-        print('in button clicked') 
-//   this.specs.initializeWebSocketConnection(user,podcasts.get(podcast));
-//  this.specs.triggerListeningToPodcast(true);    
+   this.specs.initializeWebSocketConnection(user,podcasts.get(podcast));
+  this.specs.triggerListeningToPodcast(true);    
 
    this.spotifyMenuContainer.sceneObject.enabled = true;
 

@@ -10,8 +10,7 @@ export class SpectaclesBackendClient extends BaseScriptComponent {
 
   private websocket: WebSocketConnection;
   private currentPodcastId;
-  // private username: string;
-  private username = "vern416"
+  private username: string;
     
   @input
   remoteServiceModule: RemoteServiceModule;
@@ -167,6 +166,20 @@ export class SpectaclesBackendClient extends BaseScriptComponent {
       method: "PUT",
     })
   }
+    
+   async captureMoment(){
+         const response = await this.remoteServiceModule.fetch("https://arvprojects.com/trigger", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          "spectacles_device_id": this.username,
+         "podcast_id": this.currentPodcastId,
+        }),
+      })
+        
+    }
 }
 
 
