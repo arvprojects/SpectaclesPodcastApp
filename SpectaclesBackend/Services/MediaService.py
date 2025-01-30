@@ -1,3 +1,4 @@
+import requests
 from Services.PlatformBackendService import PlatformBackendService
 from Services.SpotifyService import SpotifyService
 from celery import current_app as celery_app
@@ -78,7 +79,22 @@ class MediaService:
             }
                 send_message_to_user(spectacles_device_id, message)
 
+    @staticmethod
+    def capture_moment(spectacles_device_id, podcast_id):
+        current_position_response = SpotifyService.get_playback(spectacles_device_id)
+        current_position = current_position_response['progress_ms']
+        start_timestamp = max(current_position - 15000, 0)
+        end_timestamp = current_position + 15000
 
+        payload = {
+            'device_id': spectacles_device_id,
+            'podcast_id': podcast_id,
+            'start_timestamp': start_timestamp,
+            'end_timestamp': end_timestamp
+        }
+        url = f"{current_app.config['PLATFORM_BACKEND_URL']}/captured_moments"
+        response = requests.post(url, json=payload)
+        return response
     # @staticmethod
     # def check_media_timestamps(playback_timestamp, media_list, device_id):
     #     for media in media_list:

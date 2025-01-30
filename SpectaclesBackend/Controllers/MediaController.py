@@ -54,6 +54,11 @@ def send_message_to_user(spectacles_device_id, message):
     response = requests.post(f"{current_app.config['SPECTACLES_BACKEND_URL']}/sendMessage", json=data)
     return 'Triggered', 200
 
+@media_controller_bp.route('/capturemoment', methods=['POST'])
+def capture_moment():
+    data = request.json
+    media_service.capture_moment(data['spectacles_device_id'], data['podcast_id'])
+    return 'Captured', 200
 #use socket io to send message to user
 # def send_message_to_user(spectacles_device_id, message):
 #     socketio.emit('message', {'data': message}, room=spectacles_device_id)

@@ -22,8 +22,9 @@ class CapturedMomentService:
         if captured_moment:
             captured_moment.user_id = captured_moment_instance.user_id
             captured_moment.podcast_id = captured_moment_instance.podcast_id
-            captured_moment.timestamp = captured_moment_instance.timestamp
-            captured_moment.transcript = captured_moment_instance.transcript
+            captured_moment.start_timestamp = captured_moment_instance.start_timestamp
+            captured_moment.end_timestamp = captured_moment_instance.end_timestamp
+            
             CapturedMomentRepository.update_captured_moment(captured_moment)
             return captured_moment
         return None
