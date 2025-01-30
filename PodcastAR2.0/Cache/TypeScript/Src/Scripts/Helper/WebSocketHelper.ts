@@ -1,6 +1,6 @@
 import Event from "SpectaclesInteractionKit/Utils/Event";
 
-const HOST = "wss://arvprojects.com";
+const HOST = "wss://arvprojects.com/ws";
 
 export class WebSocketConnection {
   private remoteServiceModule: RemoteServiceModule = require("LensStudio:RemoteServiceModule");
@@ -46,8 +46,9 @@ export class WebSocketConnection {
   private _onError(event: WebSocketErrorEvent) {
     this.onErrorEvent.invoke(event);
   }
-  private _onMessage(event: WebSocketMessageEvent) {
+   private async _onMessage(event: WebSocketMessageEvent) {
     print("Received Message");
+           
     this.onMessageEvent.invoke(event);
   }
 

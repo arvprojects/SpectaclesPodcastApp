@@ -150,6 +150,7 @@ class SpotifyService:
     def seek_forward(spectacles_device_id, milliseconds):
         auth_token, refresh_token, user_id = SpotifyService.get_user_auth_token(spectacles_device_id)
         current_position_response = SpotifyService.get_playback(spectacles_device_id)
+        print(current_position_response)
         if current_position_response.status_code == 401:
             current_app.logger.info('Access token expired, refreshing token...')
             new_auth_token = SpotifyService.refresh_token(refresh_token)

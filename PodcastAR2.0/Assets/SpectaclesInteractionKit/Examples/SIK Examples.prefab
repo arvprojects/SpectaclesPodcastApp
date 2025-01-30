@@ -343,17 +343,20 @@
 - !<ScriptComponent/09db777e-2a46-487f-8d0e-89061d39cbce>
   PrefabRemaps:
     []
-  Name: GridContentCreator
+  Name: PodcastListGenerator
   Enabled: true
   ScriptAsset: !<reference> ad83ff54-844d-49a8-9102-f568a9d291c3
   ScriptInputsDefault:
-    {}
+    containerFrame: true
+    scr: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
     "":
       itemPrefab: !<reference.ObjectPrefab> 642b5216-980f-4be9-9593-16aa50bc54ca
       itemsCount: !<float> 30.000000
+      containerFrame: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
+      scr: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     "":
       {}

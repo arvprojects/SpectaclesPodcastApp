@@ -12,6 +12,10 @@ function checkUndefined(property, showIfData){
       throw new Error('Input ' + property + ' was not provided for the object ' + script.getSceneObject().name);
    }
 }
+// @input Asset.RemoteServiceModule remoteServiceModule
+checkUndefined("remoteServiceModule", []);
+// @input Asset.ObjectPrefab containerPrefab
+checkUndefined("containerPrefab", []);
 var scriptPrototype = Object.getPrototypeOf(script);
 if (!global.BaseScriptComponent){
    function BaseScriptComponent(){}
@@ -23,7 +27,7 @@ if (!global.BaseScriptComponent){
    }
 }
 var Module = require("../../../Modules/Src/Scripts/SpectaclesBackendClient");
-Object.setPrototypeOf(script, Module.NewScript.prototype);
+Object.setPrototypeOf(script, Module.SpectaclesBackendClient.prototype);
 script.__initialize();
 if (script.onAwake) {
    script.onAwake();

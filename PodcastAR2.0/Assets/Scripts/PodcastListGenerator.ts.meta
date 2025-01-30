@@ -26,17 +26,26 @@
   CurrentVisibility: Editable
   MaxVisibility: Editable
   ScriptInputsHidden:
+    containerFrame: false
     itemPrefab: false
     itemsCount: false
+    scr: false
+    spotifyMenu: false
   ScriptTypesHidden:
     {}
   DefaultScriptInputs:
     - itemPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
       itemsCount: !<float> 10.000000
+      scr: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      containerFrame: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
+      spotifyMenu: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     -
       {}
   InputLines:
     - // @input Asset.ObjectPrefab itemPrefab
     - // @input float itemsCount = 10
+    - // @input Component.ScriptComponent containerFrame
+    - // @input Component.ScriptComponent spotifyMenu
+    - // @input SceneObject scr
   SvgIcon: ""

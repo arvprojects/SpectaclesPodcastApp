@@ -16,6 +16,12 @@ function checkUndefined(property, showIfData){
 checkUndefined("itemPrefab", []);
 // @input float itemsCount = 10
 checkUndefined("itemsCount", []);
+// @input Component.ScriptComponent containerFrame
+checkUndefined("containerFrame", []);
+// @input Component.ScriptComponent spotifyMenu
+checkUndefined("spotifyMenu", []);
+// @input SceneObject scr
+checkUndefined("scr", []);
 var scriptPrototype = Object.getPrototypeOf(script);
 if (!global.BaseScriptComponent){
    function BaseScriptComponent(){}

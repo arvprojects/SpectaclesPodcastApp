@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WebSocketConnection = void 0;
 const Event_1 = require("SpectaclesInteractionKit/Utils/Event");
-const HOST = "wss://arvprojects.com";
+const HOST = "wss://arvprojects.com/ws";
 class WebSocketConnection {
     constructor() {
         this.remoteServiceModule = require("LensStudio:RemoteServiceModule");
@@ -34,7 +34,7 @@ class WebSocketConnection {
     _onError(event) {
         this.onErrorEvent.invoke(event);
     }
-    _onMessage(event) {
+    async _onMessage(event) {
         print("Received Message");
         this.onMessageEvent.invoke(event);
     }
