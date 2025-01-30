@@ -57,8 +57,20 @@ def send_message_to_user(spectacles_device_id, message):
 @media_controller_bp.route('/capturemoment', methods=['POST'])
 def capture_moment():
     data = request.json
-    media_service.capture_moment(data['spectacles_device_id'], data['podcast_id'])
-    return 'Captured', 200
+    spectacles_device_id = data.get('spectacles_device_id')
+    podcast_id = data.get('podcast_id')
+
+    if not spectacles_device_id or not podcast_id:
+        return 'Missing parameters', 400
+
+    try:
+        response = media_service.capture_moment(spectacles_device_id, podcast_id)
+        if response.status_code == 200:
+            return 'Captured', 200
+        else:
+            return 'Not Captured', response.status_code
+    except Exception as e:
+        return str(e), 500
 #use socket io to send message to user
 # def send_message_to_user(spectacles_device_id, message):
 #     socketio.emit('message', {'data': message}, room=spectacles_device_id)

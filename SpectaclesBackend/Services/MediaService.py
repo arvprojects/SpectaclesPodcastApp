@@ -1,6 +1,7 @@
 import requests
 from Services.PlatformBackendService import PlatformBackendService
 from Services.SpotifyService import SpotifyService
+from ..Services.PlatformBackendService import get_user_by_device_id
 from celery import current_app as celery_app
 from flask import current_app
 from celery.schedules import schedule
@@ -85,12 +86,13 @@ class MediaService:
         current_position = current_position_response['progress_ms']
         start_timestamp = max(current_position - 15000, 0)
         end_timestamp = current_position + 15000
-
+        id = get_user_by_device_id(spectacles_device_id)
         payload = {
-            'device_id': spectacles_device_id,
+            'user_id': id,
             'podcast_id': podcast_id,
             'start_timestamp': start_timestamp,
-            'end_timestamp': end_timestamp
+            'end_timestamp': end_timestamp,
+            'transcript' : "This is a test transcript",
         }
         url = f"{current_app.config['PLATFORM_BACKEND_URL']}/captured_moments"
         response = requests.post(url, json=payload)
