@@ -29,21 +29,6 @@ def sendMessage():
     else:
          return 'user not connected',404
 
-# @socketio.on('connect')
-# def handle_connect():
-#         username = request.args.get('spectacles_device_id')
-#         current_app.logger.info(f"User {username} connected")
-#         if username:
-#             join_room(username)
-#             current_app.logger.info(f"User {username} connected")
-#             socketio.emit('message', {'data': 'Connected'}, room=username)
-
-# @socketio.on('disconnect')
-# def handle_disconnect():
-#         username = request.args.get('spectacles_device_id')
-#         leave_room(username)
-        
-#         current_app.logger.info(f"User {username} disconnected")
 
 def send_message_to_user(spectacles_device_id, message):
     #make a post request to the sendMessage endpoint
@@ -54,10 +39,23 @@ def send_message_to_user(spectacles_device_id, message):
     response = requests.post(f"{current_app.config['SPECTACLES_BACKEND_URL']}/sendMessage", json=data)
     return 'Triggered', 200
 
-#use socket io to send message to user
-# def send_message_to_user(spectacles_device_id, message):
-#     socketio.emit('message', {'data': message}, room=spectacles_device_id)
-#     return 'Triggered', 200
+@media_controller_bp.route('/capturemoment', methods=['POST'])
+def capture_moment():
+    data = request.json
+    spectacles_device_id = data.get('spectacles_device_id')
+    podcast_id = data.get('podcast_id')
+
+    if not spectacles_device_id or not podcast_id:
+        return 'Missing parameters', 400
+
+    try:
+        response = media_service.capture_moment(spectacles_device_id, podcast_id)
+        if 200 <= response.status_code < 300:
+            return 'Captured', 200
+        else:
+            return 'Not Captured', response.status_code
+    except Exception as e:
+        return str(e), 500
 
 
 def init_sockets(sock):

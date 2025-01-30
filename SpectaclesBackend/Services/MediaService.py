@@ -1,3 +1,4 @@
+import requests
 from Services.PlatformBackendService import PlatformBackendService
 from Services.SpotifyService import SpotifyService
 from celery import current_app as celery_app
@@ -78,48 +79,20 @@ class MediaService:
             }
                 send_message_to_user(spectacles_device_id, message)
 
-
-    # @staticmethod
-    # def check_media_timestamps(playback_timestamp, media_list, device_id):
-    #     for media in media_list:
-    #         if abs(media['start_timestamp'] - playback_timestamp) <= 2500:
-    #             current_app.logger.info(f"Media start match found: {media['storage_url']}")
-    #             # Publish start message to the message broker
-    #             MediaService.publish_to_broker(
-    #                 device_id,
-    #                 {
-    #                     "MediaId": media['id'],  # Unique identifier for the media
-    #                     "mediaUrl": media['storage_url'],  # URL to media storage or webview
-    #                     "activate": True
-    #                 }
-    #             )
-    #         elif abs(media['end_timestamp'] - playback_timestamp) <= 2500:
-    #             current_app.logger.info(f"Media end match found: {media['storage_url']}")
-    #             # Publish stop message to the message broker
-    #             MediaService.publish_to_broker(
-    #                 device_id,
-    #                 {
-    #                     "MediaId": media['id'],  # Unique identifier for the media
-    #                     "activate": False
-    #                 }
-    #             )
-
-    # @staticmethod
-    # def publish_to_broker(spectacles_device_id, payload):
-    #     broker_url = "a1smxj2i6r5ldy-ats.iot.us-east-2.amazonaws.com"  # Replace with your MQTT broker URL
-    #     topic = f"spectacles/{spectacles_device_id}/media"
-
-    #     client = mqtt.Client()
-    #     current_app.logger.info("Publish to broker is being called")
-    #     # Optional: Add authentication or TLS if required
-    #     # client.username_pw_set(username="your-username", password="your-password")
-    #     # client.tls_set("path_to_ca_cert.pem")
-
-    #     current_app.logger.info(f"this is the payload {payload}")
-    #     current_app.logger.info(f"this is the topic {topic}")
-    #     client.connect(broker_url, 1883, 60)  # Port 1883 for unencrypted MQTT
-        
-    #     client.publish(topic, json.dumps(payload))
-    #     current_app.logger.info(f"Published to topic {topic}: {payload}")
-        
-    #     client.disconnect()
+    @staticmethod
+    def capture_moment(spectacles_device_id, podcast_id):
+        current_position_response = SpotifyService.get_playback(spectacles_device_id)
+        current_position = current_position_response['progress_ms']
+        start_timestamp = max(current_position - 15000, 0)
+        end_timestamp = current_position + 15000
+        metadata = PlatformBackendService.get_user_metadata_by_spectacles(spectacles_device_id)
+        payload = {
+            'user_id': metadata['id'],
+            'podcast_id': podcast_id,
+            'start_timestamp': start_timestamp,
+            'end_timestamp': end_timestamp,
+            'transcript' : "This is a test transcript",
+        }
+        url = f"{current_app.config['PLATFORM_BACKEND_URL']}/captured_moments"
+        response = requests.post(url, json=payload)
+        return response
