@@ -85,7 +85,7 @@ class MediaService:
         current_position = current_position_response['progress_ms']
         start_timestamp = max(current_position - 15000, 0)
         end_timestamp = current_position + 15000
-        id = get_user_by_device_id(spectacles_device_id)
+        id = PlatformBackendService.get_user_by_device_id(spectacles_device_id)
         payload = {
             'user_id': id,
             'podcast_id': podcast_id,
