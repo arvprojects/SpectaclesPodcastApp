@@ -29,21 +29,6 @@ def sendMessage():
     else:
          return 'user not connected',404
 
-# @socketio.on('connect')
-# def handle_connect():
-#         username = request.args.get('spectacles_device_id')
-#         current_app.logger.info(f"User {username} connected")
-#         if username:
-#             join_room(username)
-#             current_app.logger.info(f"User {username} connected")
-#             socketio.emit('message', {'data': 'Connected'}, room=username)
-
-# @socketio.on('disconnect')
-# def handle_disconnect():
-#         username = request.args.get('spectacles_device_id')
-#         leave_room(username)
-        
-#         current_app.logger.info(f"User {username} disconnected")
 
 def send_message_to_user(spectacles_device_id, message):
     #make a post request to the sendMessage endpoint
@@ -65,16 +50,12 @@ def capture_moment():
 
     try:
         response = media_service.capture_moment(spectacles_device_id, podcast_id)
-        if response.status_code == 200:
+        if 200 <= response.status_code < 300:
             return 'Captured', 200
         else:
             return 'Not Captured', response.status_code
     except Exception as e:
         return str(e), 500
-#use socket io to send message to user
-# def send_message_to_user(spectacles_device_id, message):
-#     socketio.emit('message', {'data': message}, room=spectacles_device_id)
-#     return 'Triggered', 200
 
 
 def init_sockets(sock):
