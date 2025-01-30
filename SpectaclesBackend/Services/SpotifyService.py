@@ -201,11 +201,6 @@ class SpotifyService:
     def seek_forward(spectacles_device_id, milliseconds):
         auth_token, refresh_token, user_id = SpotifyService.get_user_auth_token(spectacles_device_id)
         current_position_response = SpotifyService.get_playback(spectacles_device_id)
-        current_app.logger.info('Access token expired, refreshing token...')
-        new_auth_token = SpotifyService.refresh_token(refresh_token)
-        if new_auth_token:
-            SpotifyService.update_user_auth_token(user_id, new_auth_token)
-            current_position_response = SpotifyService.get_playback(spectacles_device_id)
         current_position = current_position_response['progress_ms']
         new_position = current_position + milliseconds
         return SpotifyService.seek(spectacles_device_id, new_position)
@@ -214,11 +209,6 @@ class SpotifyService:
     def seek_backward(spectacles_device_id, milliseconds):
         auth_token, refresh_token, user_id = SpotifyService.get_user_auth_token(spectacles_device_id)
         current_position_response = SpotifyService.get_playback(spectacles_device_id)
-        current_app.logger.info('Access token expired, refreshing token...')
-        new_auth_token = SpotifyService.refresh_token(refresh_token)
-        if new_auth_token:
-            SpotifyService.update_user_auth_token(user_id, new_auth_token)
-            current_position_response = SpotifyService.get_playback(spectacles_device_id)
         current_position = current_position_response['progress_ms']
         new_position = max(current_position - milliseconds, 0)
         return SpotifyService.seek(spectacles_device_id, new_position)
