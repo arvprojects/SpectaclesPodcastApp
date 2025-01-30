@@ -17,7 +17,7 @@
   "build": "vite build",
   "lint": "eslint \"src/**/*.js\"",
   "serve": "vite preview",
-  "start": "serve -s build",
+  "start": "npm run preview",
   "heroku-postbuild": "npm install && npm run build"
 },
   "dependencies": {
