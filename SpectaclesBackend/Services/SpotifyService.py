@@ -15,7 +15,6 @@ class SpotifyService:
         current_app.logger.info(url)
         response = requests.get(url)
         user_data = response.json()
-        current_app.logger.info('here')
         return user_data.get('spotify_auth_code'), user_data.get('spotify_refresh_token'), user_data.get('id')
     
 
@@ -92,6 +91,9 @@ class SpotifyService:
             if new_auth_token:
                 SpotifyService.update_user_auth_token(user_id, new_auth_token)
                 response = requests.get(SpotifyService.base_url, headers={'Authorization': f'Bearer {new_auth_token}'})
+        elif response.status_code == 204:
+            current_app.logger.info('No active device found')
+            return {}
         return response.json()
     
     @staticmethod
@@ -106,6 +108,9 @@ class SpotifyService:
             if new_auth_token:
                 SpotifyService.update_user_auth_token(user_id, new_auth_token)
                 response = requests.get(SpotifyService.base_url, headers={'Authorization': f'Bearer {new_auth_token}'})
+        elif response.status_code == 204:
+            current_app.logger.info('No active device found')
+            return {}
         return response.json()["progress_ms"],refreshed
         
 
