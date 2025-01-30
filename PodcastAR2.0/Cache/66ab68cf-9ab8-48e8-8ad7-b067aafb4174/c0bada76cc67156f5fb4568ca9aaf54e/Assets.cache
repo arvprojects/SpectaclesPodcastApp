@@ -1,0 +1,13 @@
+- !<AssetCache/c0bada76-cc67-156f-5fb4-568ca9aaf54e>
+  AssetFiles:
+    4ce82aa3-8e78-4e2c-b693-4224248bba87: 66ab68cf-9ab8-48e8-8ad7-b067aafb4174/c0bada76cc67156f5fb4568ca9aaf54e/Data/SIK_Space_logo_TEMP.png
+  Assets:
+    - !<FileTexture/4ce82aa3-8e78-4e2c-b693-4224248bba87>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1000
+        Height: 1000
+  SourceHash: c0bada76cc67156f5fb4568ca9aaf54e
+  FileHash: 7c03687e8bebee11f904182cf89d7a8d
+  NativePackageItems:
+    []

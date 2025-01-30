@@ -1,0 +1,13 @@
+- !<AssetCache/2ab4fe82-c5db-0288-6d38-7e489dd3f7fd>
+  AssetFiles:
+    16323e0b-43a3-431f-b1f0-60029ae56ca5: bbf4be31-8204-4ef2-a103-e051e25009a2/2ab4fe82c5db02886d387e489dd3f7fd/Data/B-icon.png
+  Assets:
+    - !<FileTexture/16323e0b-43a3-431f-b1f0-60029ae56ca5>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 96
+        Height: 96
+  SourceHash: 2ab4fe82c5db02886d387e489dd3f7fd
+  FileHash: 52df39d69c05e739aac82e83b13aeacf
+  NativePackageItems:
+    []

@@ -1,0 +1,18 @@
+- !<AssetCache/eaad36ec-0a65-276c-cbfb-3f74ea9b4425>
+  AssetFiles:
+    89d4fe22-573b-42e1-bc8e-620b4df6b699: 7256cc04-9e54-4691-942e-0e02d7d00771/eaad36ec0a65276ccbfb3f74ea9b4425/Data/PlatformSphereButton.mesh
+  Assets:
+    - !<FileMesh/89d4fe22-573b-42e1-bc8e-620b4df6b699>
+      PackagePath: ""
+      Info: !<MeshInfo>
+        Triangles: 1024
+        Vertices: 578
+        Blendshapes:
+          - Pinch
+          - Z depth
+        Joints: 0
+        AabbSize: {x: 2.202462, y: 2.202462, z: 2.218727}
+  SourceHash: eaad36ec0a65276ccbfb3f74ea9b4425
+  FileHash: 02b526d5e8e7cce309872b9022c16083
+  NativePackageItems:
+    []
