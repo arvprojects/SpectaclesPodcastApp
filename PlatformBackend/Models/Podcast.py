@@ -16,6 +16,8 @@ class Podcast(db.Model):
     def __repr__(self):
         return f'<podcast {self.name}>'
     
-    def __init__(self, name, podcast_author_id):
+    def __init__(self, name, podcast_author_id, spotify_podcast_identifier, start_at):
         self.name = name
         self.podcast_author_id = podcast_author_id
+        self.spotify_podcast_identifier = spotify_podcast_identifier
+        self.start_at = start_at
