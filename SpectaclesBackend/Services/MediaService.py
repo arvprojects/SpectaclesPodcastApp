@@ -96,3 +96,4 @@ class MediaService:
         url = f"{current_app.config['PLATFORM_BACKEND_URL']}/captured_moments"
         response = requests.post(url, json=payload)
         return response
+    

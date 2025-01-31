@@ -1,5 +1,6 @@
 from flask import Blueprint, request,current_app
 from Services.MediaService import MediaService
+from Services.PlatformBackendService import PlatformBackendService
 from flask_socketio import SocketIO,emit, join_room, leave_room
 from Controllers.socketio_instance import socketio
 import requests
@@ -7,6 +8,7 @@ from flask_sockets import Sockets
 import json
 media_controller_bp = Blueprint('media_controller', __name__)
 media_service = MediaService()
+platformBackendService = PlatformBackendService()
 active_connections = {}
 
 @media_controller_bp.route('/trigger', methods=['POST'])
@@ -28,7 +30,12 @@ def sendMessage():
         return 'message sent', 200
     else:
          return 'user not connected',404
+    
 
+@media_controller_bp.route('/getPodcasts', methods=['GET'])
+def get_podcasts():
+    response = platformBackendService.get_podcasts_metadata()
+    return response, 200
 
 def send_message_to_user(spectacles_device_id, message):
     #make a post request to the sendMessage endpoint
@@ -76,3 +83,5 @@ def init_sockets(sock):
         if username in active_connections:
             del active_connections[username]
             current_app.logger.info(f"User {username} disconnected")
+
+
