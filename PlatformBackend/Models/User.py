@@ -14,17 +14,6 @@ class User(db.Model):
     spotify_refresh_token = db.Column(db.String(255))
     is_author = db.Column(db.Boolean, default=False)
 
-
-    # thing_name = db.Column(db.String(255))
-    # certificate_arn = db.Column(db.String(255))
-    # certificate_pem = db.Column(db.Text)
-    # private_key = db.Column(db.Text)
-    # iot_endpoint = db.Column(db.String(255))
-    # created_at = db.Column(db.DateTime, default=datetime.now)
-    # updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
-
-    
-
     def __repr__(self):
         return f'<User {self.name}>'
     

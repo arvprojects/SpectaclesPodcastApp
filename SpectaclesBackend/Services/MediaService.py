@@ -20,6 +20,7 @@ class MediaService:
            
             if user_metadata and podcast_metadata:
                 MediaService.start_polling(user_metadata, podcast_metadata)
+                SpotifyService.start_playing(user_metadata['spectacles_device_id'],podcast_metadata['spotify_podcast_identifier'],podcast_metadata['start_at'])
         else:
             MediaService.stop_polling(spectacles_device_id)
 
