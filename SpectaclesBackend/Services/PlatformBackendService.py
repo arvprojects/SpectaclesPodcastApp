@@ -31,3 +31,13 @@ class PlatformBackendService:
         else:
             current_app.logger.error(f"Failed to fetch podcast metadata: {response.status_code} {response.text}")
             return None
+        
+    @staticmethod
+    def get_podcasts_metadata():
+        platform_url = current_app.config['PLATFORM_BACKEND_URL']
+        response = requests.get(f'{platform_url}/podcasts')
+        if response.status_code == 200:
+            return response.json()
+        else:
+            current_app.logger.error(f"Failed to fetch podcasts metadata: {response.status_code} {response.text}")
+            return None

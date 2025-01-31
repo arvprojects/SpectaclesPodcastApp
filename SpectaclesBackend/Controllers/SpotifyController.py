@@ -20,6 +20,8 @@ def play():
 def pause():
     spectacles_user_id = request.args.get('spectacles_device_id')
     status_code = SpotifyService.pause(spectacles_user_id)
+    if status_code==400:
+        return ('Error pausing', 400)
     return ('', status_code)
 
 @spotify_controller_bp.route('/seek/forward', methods=['PUT'])
@@ -27,6 +29,8 @@ def seek_forward():
     spectacles_user_id = request.args.get('spectacles_device_id')
     milliseconds = int(request.args.get('milliseconds', 10000))  # Default to 10 seconds
     status_code = SpotifyService.seek_forward(spectacles_user_id, milliseconds)
+    if status_code==400:
+        return ('Error seeking forward', 400)
     return ('', status_code)
 
 @spotify_controller_bp.route('/seek/backward', methods=['PUT'])
@@ -34,6 +38,8 @@ def seek_backward():
     spectacles_user_id = request.args.get('spectacles_device_id')
     milliseconds = int(request.args.get('milliseconds', 10000))  # Default to 10 seconds
     status_code = SpotifyService.seek_backward(spectacles_user_id, milliseconds)
+    if status_code==400:
+        return ('Error seeking backward', 400)
     return ('', status_code)
 
 @spotify_controller_bp.route('/login', methods=['GET'])

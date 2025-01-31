@@ -6,18 +6,20 @@
   "bugs": {
     "url": "https://github.com/coreui/coreui-free-react-admin-template/issues"
   },
+  
   "repository": {
     "type": "git",
     "url": "git@github.com:coreui/coreui-free-react-admin-template.git"
   },
   "license": "MIT",
   "author": "The CoreUI Team (https://github.com/orgs/coreui/people)",
-  "scripts": {
-    "build": "vite build",
-    "lint": "eslint \"src/**/*.js\"",
-    "serve": "vite preview",
-    "start": "vite"
-  },
+"scripts": {
+  "build": "vite build",
+  "lint": "eslint \"src/**/*.js\"",
+  "serve": "vite preview",
+  "start": "npm run preview",
+  "heroku-postbuild": "npm install && npm run build"
+},
   "dependencies": {
     "@coreui/chartjs": "^4.0.0",
     "@coreui/coreui": "^5.2.0",
