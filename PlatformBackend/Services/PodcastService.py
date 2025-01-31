@@ -21,6 +21,8 @@ class PodcastService:
         if podcast:
             podcast.name = podcast_instance.name
             podcast.podcast_author_id = podcast_instance.podcast_author_id
+            podcast.spotify_podcast_identifier = podcast_instance.spotify_podcast_identifier
+            podcast.start_at = podcast_instance.start_at
             PodcastRepository.update_podcast(podcast)
             return podcast
         return None

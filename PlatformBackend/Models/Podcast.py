@@ -10,6 +10,8 @@ class Podcast(db.Model):
     name = db.Column(db.String(255), nullable=False)
     podcast_author_id = db.Column(db.String(36), db.ForeignKey('user_table.id'), nullable=False)
     author = db.relationship('User', backref=db.backref('podcasts', lazy=True))
+    spotify_podcast_identifier = db.Column(db.String(36), primary_key=True)
+    start_at = db.Column(db.BigInteger)
 
     def __repr__(self):
         return f'<podcast {self.name}>'
