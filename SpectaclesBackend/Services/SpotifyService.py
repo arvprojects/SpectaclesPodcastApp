@@ -182,9 +182,10 @@ class SpotifyService:
     def start_playing(spectacles_device_id, podcast_identifier,start_time):
         auth_token, refresh_token, user_id = SpotifyService.get_user_auth_token(spectacles_device_id)
         body = {
-                "uris": ["spotify:episode:{podcast_identifier}"]
+                "uris": [f"spotify:episode:{podcast_identifier}"]
                 }
-        response = requests.put(f'{SpotifyService.base_url}/play', headers={'Authorization': f'Bearer {auth_token}'})
+        response = requests.put(f'{SpotifyService.base_url}/play', headers={'Authorization': f'Bearer {auth_token}'},
+                                json=body)
         if response.status_code == 401:
             current_app.logger.info('Access token expired, refreshing token...')
             new_auth_token = SpotifyService.refresh_token(refresh_token)
@@ -194,8 +195,8 @@ class SpotifyService:
     
         if 200<=response.status_code<=300:
             response = SpotifyService.seek(spectacles_device_id,start_time)
-            
-        return response.status_code
+
+        return response
 
     @staticmethod
     def pause(spectacles_device_id):
