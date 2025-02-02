@@ -51,6 +51,7 @@ class MediaService:
             entry = RedBeatSchedulerEntry.from_key("redbeat:"+spectacles_device_id,app=celery_app)
         except:
             current_app.logger.info(f"Entry not found")
+            return
     
         if entry:
             entry.delete()
