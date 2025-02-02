@@ -13,6 +13,7 @@ import json
 class MediaService:
     @staticmethod
     def trigger(spectacles_device_id, podcast_id, start):
+        print(f"Triggering media for device ID: {spectacles_device_id} and setting to start = {start}")
         current_app.logger.info(f"Triggering media for device ID: {spectacles_device_id} and podcast ID: {podcast_id}")
         if start:
             user_metadata = PlatformBackendService.get_user_metadata_by_spectacles(spectacles_device_id)
