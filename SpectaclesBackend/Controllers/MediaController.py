@@ -68,21 +68,27 @@ def capture_moment():
 def init_sockets(sock):
     @sock.route('/ws')
     def handle_websocket(ws):
-        while True:
-            message = ws.receive()
-            if message is None:
-                break
-            data = json.loads(message)
-            username = data.get('spectacles_device_id')
-            current_app.logger.info(f"User {username} connected")
-            if username:
-                active_connections[username] = ws
-                ws.send(json.dumps({'data': 'Connected'}))
-                # Handle other messages here
-        # Remove the connection when it is closed
-        if username in active_connections:
-            # MediaService.trigger(username, None , False) # Stop polling if the user disconnects
-            del active_connections[username]
-            current_app.logger.info(f"User {username} disconnected")
+        try:
+            while True:
+                message = ws.receive()
+                if message is None:
+                    break
+                data = json.loads(message)
+                username = data.get('spectacles_device_id')
+                current_app.logger.info(f"User {username} connected")
+                if username:
+                    active_connections[username] = ws
+                    ws.send(json.dumps({'data': 'Connected'}))
+        finally:
+            current_app.logger.info(f"User {username} disconnecting...")
+            # Remove the connection when it is closed
+            if username in active_connections:
+                MediaService.trigger(username, None , False) # Stop polling if the user disconnects
+                del active_connections[username]
+                current_app.logger.info(f"User {username} disconnected")
 
+
+
+        
+        
 
