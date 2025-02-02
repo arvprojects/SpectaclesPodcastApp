@@ -18,3 +18,10 @@ class CapturedMoment(db.Model):
 
     def __repr__(self):
         return f'<CapturedMoment {self.id}>'
+    
+    def __init__(self, user_id, podcast_id, start_timestamp=None, end_timestamp=None, transcript=None):
+        self.user_id = user_id
+        self.podcast_id = podcast_id
+        self.start_timestamp = start_timestamp
+        self.end_timestamp = end_timestamp
+        self.transcript = transcript
