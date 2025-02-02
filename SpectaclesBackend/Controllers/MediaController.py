@@ -81,7 +81,7 @@ def init_sockets(sock):
                 # Handle other messages here
         # Remove the connection when it is closed
         if username in active_connections:
-            MediaService.trigger(username, None , False) # Stop polling if the user disconnects
+            # MediaService.trigger(username, None , False) # Stop polling if the user disconnects
             del active_connections[username]
             current_app.logger.info(f"User {username} disconnected")
 
